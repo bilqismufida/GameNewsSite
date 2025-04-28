@@ -259,13 +259,15 @@ uri('login', 'Auth\Auth', 'login');
 uri('check-login', 'Auth\Auth', 'checkLogin', "POST");
 uri('logout', 'Auth\Auth', 'logout');
 
+
 //home
 uri('/', 'App\Home', 'index');
 uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');
 uri('comment-store', 'App\Home', 'commentStore', 'POST');
-
+uri('profile', 'App\Home', 'profile');
+uri('most-view', 'App\Home', 'mostViewed');
 
 echo '404 - not found';
 exit;

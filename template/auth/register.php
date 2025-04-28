@@ -55,12 +55,12 @@
         </div>
 
         <!-- Navbar Area -->
-        <div class="custom-main-menu" id="sticker">
+        <div class="vizew-main-menu" id="sticker">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
 
                     <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="customNav">
+                    <nav class="classy-navbar justify-content-between" id="vizewNav">
 
                         <!-- Nav brand -->
                         <!-- <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a> -->
@@ -94,7 +94,7 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcrumb Area Start ##### -->
-    <div class="custom-breadcrumb">
+    <div class="vizew-breadcrumb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -113,7 +113,7 @@
     <!-- ##### Breadcrumb Area End ##### -->
 
     <!-- ##### Register Area Start ##### -->
-    <div class="custom-login-area section-padding-80">
+    <div class="vizew-login-area section-padding-80">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
@@ -157,7 +157,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="custom-control">
+                                <div class="vizew-control">
                                     <a class="txt2" href="<?= url('login') ?>">
                                         <p>
                                             <i>Login your Account</i>
@@ -166,7 +166,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <button type="submit" class="btn custom-btn w-100 mt-30">Register</button>
+                            <button type="submit" class="btn vizew-btn w-100 mt-30">Register</button>
                         </form>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 <?php
-$db = new \Database\DataBase();
-$categories = $db->select("SELECT * FROM categories")->fetchAll();
+    $db = new Database\DataBase();
+    $categories = $db->select("SELECT * FROM categories")->fetchAll();
+    $setting = $db->select('SELECT * FROM websetting')->fetch();
+    $topSelectedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3')->fetchAll();
 
 ?>
 
@@ -11,15 +13,15 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="<?= asset($setting['icon']) ?>">
+    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.jpeg') ?>" />
     <!-- Meta Description -->
-    <meta name="description" content="<?= $setting['description'] ?>">
+    <meta name="description" content="Game News Website">
     <!-- Meta Keyword -->
-    <meta name="keywords" content="<?= $setting['keywords'] ?>">
+    <meta name="keywords" content="Game News Website">
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title><?= $setting['title'] ?></title>
+    <title>Game News Website</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
@@ -89,9 +91,9 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
                             </div>
                             <!-- Login -->
                             <?php if (isset($_SESSION['user'])): ?>
-                                <a class="btn btn-danger" href="<?= url('logout') ?>">
-                                    <span class="lnr lnr-exit"></span>
-                                    <span style="font-size:15px;"> Logout</span>
+                                <a class="login-btn" href="<?= url('profile') ?>">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span style="font-size:15px;"> Profile</span>
                                 </a>
                             <?php else: ?>
                                 <a class="btn btn-primary" href="<?= url('login') ?>">
@@ -135,13 +137,7 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <?php foreach ($menus as $menu) { ?>
-                                        <li class="menu-active">
-                                            <a href="<?= $menu['url'] ?>">
-                                                <?= $menu['name'] ?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
+                                    <li><a href="<?= url('most-view')?>">Most Viewed</a></li>
                                     <li><a href="#">Categories</a>
                                         <ul class="dropdown">
                                             <?php foreach ($categories as $category) { ?>

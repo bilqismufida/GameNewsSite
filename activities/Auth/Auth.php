@@ -77,6 +77,9 @@ class Auth
 
     public function login()
     {
+        $db = new DataBase();
+        $categories = $db->select("SELECT * FROM categories")->fetchAll();
+        $setting = $db->select('SELECT * FROM websetting')->fetch();
         require_once BASE_PATH . '/template/auth/login.php';
     }
 
@@ -95,7 +98,7 @@ class Auth
                     $this->redirect('admin');
                 } else {
                     flash('login_error', 'The password is wrong');
-                    $this->redirectBack();
+                    $this->redirectBack(); 
                 }
             } else {
                 flash('login_error', 'User not found');
@@ -133,6 +136,5 @@ class Auth
 
     }
 
-    
 
 }
