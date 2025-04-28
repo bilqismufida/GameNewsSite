@@ -1,0 +1,35 @@
+Tentu! Ini versi penjelasannya dalam bahasa Indonesia, dibagi per paragraf biar gampang disalin ke file teks:
+
+---
+
+**1. `RewriteEngine On`**  
+Baris ini mengaktifkan fitur rewrite di server Apache. Tanpa baris ini, aturan-aturan selanjutnya nggak akan jalan. Intinya ini kayak tombol ON buat mulai ngatur URL.
+
+---
+
+**2. `RewriteBase /`**  
+Baris ini menentukan path dasar untuk semua aturan rewrite. Tanda `/` berarti kamu memulai dari direktori utama website kamu. Kalau file `.htaccess`-nya ada di dalam folder, kamu harus ganti ini sesuai dengan nama folder itu.
+
+---
+
+**3. `RewriteRule ^index.php$ - [L]`**  
+Baris ini bilang ke server: “Kalau URL yang diminta persis `index.php`, jangan ubah apa-apa dan langsung berhenti proses aturan selanjutnya.” Tanda `-` artinya tidak melakukan perubahan, dan `[L]` artinya ini aturan terakhir kalau cocok.
+
+---
+
+**4. `RewriteCond %{REQUEST_FILENAME} !-f` dan `RewriteCond %{REQUEST_FILENAME} !-d`**  
+Kedua baris ini adalah syarat. Mereka ngecek apakah URL yang diminta **bukan** file (`!-f`) dan **bukan** folder (`!-d`). Jadi kalau file atau folder itu beneran ada, aturan rewrite nggak akan dijalankan.
+
+---
+
+**5. `RewriteRule ^(.+)$ GameNewsSite/index.php [QSA,L]`**  
+Baris ini melakukan rewrite untuk semua URL yang nggak cocok dengan file atau folder nyata. Misalnya ada yang akses `/berita/terbaru`, maka akan diarahkan secara internal ke `GameNewsSite/index.php`. `QSA` artinya parameter query string tetap dipertahankan, dan `[L]` berarti ini aturan terakhir kalau cocok.
+
+---
+
+**Ringkasan**  
+File `.htaccess` ini dipakai buat bikin URL website kamu jadi lebih rapi dan bersih, dengan mengarahkan semua permintaan (yang bukan file atau folder) ke `GameNewsSite/index.php`. Nantinya, file PHP tersebut yang bakal menentukan apa isi halaman yang diminta berdasarkan URL-nya.
+
+---
+
+Kalau kamu mau aku tambahin komentar langsung di file `.htaccess`-nya juga, tinggal bilang aja ya!
