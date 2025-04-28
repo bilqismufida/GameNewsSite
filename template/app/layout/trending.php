@@ -4,7 +4,7 @@
             <div class="col-12">
                 <!-- Section Heading -->
                 <div class="section-heading">
-                    <h4>Trending NewsZZZ</h4>
+                    <h4>Trending STECU</h4>
                     <div class="line"></div>
                 </div>
             </div>
