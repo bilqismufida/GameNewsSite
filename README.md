@@ -109,13 +109,6 @@ Created by [@MobinaJafarian](https://github.com/MobinaJafarian) - feel free to c
 > Writer
 > kalo waktunya cukup ditambah [writer profile juga]
 
-## Questions
-
-> "How do they trim the link?"
-> ambigous answer: this must be something in index.php at line 117 (function asset)
-> [ANSWER] still ambiguous
-> "function url" index.php
-
 ## Notes
 
 - Menu di navbar user itu dia dari database.
