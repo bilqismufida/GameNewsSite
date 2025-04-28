@@ -258,6 +258,9 @@ uri('register/store', 'Auth\Auth', 'registerStore', "POST");
 uri('login', 'Auth\Auth', 'login');
 uri('check-login', 'Auth\Auth', 'checkLogin', "POST");
 uri('logout', 'Auth\Auth', 'logout');
+//user update
+uri('user/edit/{id}', 'Auth\Auth', 'edit');
+uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
 
 
 //home

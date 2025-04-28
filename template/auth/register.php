@@ -134,13 +134,6 @@
                                 </div>
                                 <?php
                             } ?>
-                            <!-- <div class="form-group">
-                                <input class="form-control" type="text" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="Password">
-                            </div> -->
-
                             <div class="form-group" data-validate="Valid email is required: ex@abc.xyz">
                                 <input class="form-control" type="text" name="username" placeholder="Username">
 

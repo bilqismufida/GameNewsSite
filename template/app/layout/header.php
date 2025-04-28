@@ -1,9 +1,12 @@
 <?php
-    $db = new Database\DataBase();
-    $categories = $db->select("SELECT * FROM categories")->fetchAll();
-    $setting = $db->select('SELECT * FROM websetting')->fetch();
-    $topSelectedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3')->fetchAll();
-
+$db = new Database\DataBase();
+$categories = $db->select("SELECT * FROM categories")->fetchAll();
+$setting = $db->select('SELECT * FROM websetting')->fetch();
+$topSelectedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3')->fetchAll();
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = $db->select("SELECT * FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,10 +65,71 @@
             line-height: 1;
             z-index: 79;
         }
+
+        /* Profile Overlay */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 10%;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            color: white;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .profile-info h3 {
+            margin-top: 20px;
+        }
+
+        .profile-info a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .form-control {
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            width: 100%;
+            background-color: #393c3d;
+            font-size: 12px;
+            margin-bottom: 15px;
+            padding: 10px 30px;
+            color: #ffffff;
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border: none;
+            border-radius: 0;
+        }
+  .form-control:focus {
+    box-shadow: none;
+    color: #ffffff;
+  background-color: #393c3d; }
     </style>
 </head>
 
-<body> 
+<body>
     <header class="header-area">
         <!-- Top Header Area -->
         <div class="top-header-area">
@@ -91,10 +155,11 @@
                             </div>
                             <!-- Login -->
                             <?php if (isset($_SESSION['user'])): ?>
-                                <a class="login-btn" href="<?= url('profile') ?>">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <a class="login-btn" href="javascript:void(0)" onclick="openProfileMenu()">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                     <span style="font-size:15px;"> Profile</span>
                                 </a>
+
                             <?php else: ?>
                                 <a class="btn btn-primary" href="<?= url('login') ?>">
                                     <span class="lnr lnr-enter-down"></span>
@@ -137,7 +202,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="<?= url('most-view')?>">Most Viewed</a></li>
+                                    <li><a href="<?= url('most-view') ?>">Most Viewed</a></li>
                                     <li><a href="#">Categories</a>
                                         <ul class="dropdown">
                                             <?php foreach ($categories as $category) { ?>
@@ -158,3 +223,24 @@
             </div>
         </div>
     </header>
+
+    <!-- Overlay Side Menu -->
+    <div id="profileOverlay" class="overlay">
+        <div class="overlay-content">
+            <span class="closebtn" onclick="closeProfileMenu()">&times;</span>
+            <?php if (isset($_SESSION['user'])): ?>
+                <div class="profile-info">
+                    <i class="fa fa-user-circle" style="font-size: 60px;"></i>
+                    <h3><?= htmlspecialchars($user['username']) ?></h3>
+                    <h5><?= htmlspecialchars($user['email']) ?></h5>
+                    <a href="<?= url('profile') ?>" class="btn btn-primary" style="margin-top: 10px;">Go to Profile</a>
+                    <a href="<?= url('logout') ?>" class="btn btn-danger" style="margin-top: 10px;">Logout</a>
+                </div>
+            <?php else: ?>
+                <div class="profile-info">
+                    <h3>Welcome, Guest!</h3>
+                    <a href="<?= url('login') ?>" class="btn btn-primary" style="margin-top: 10px;">Login</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>

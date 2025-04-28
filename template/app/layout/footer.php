@@ -73,6 +73,16 @@
     </div>
 </footer>
 
+<script>
+function openProfileMenu() {
+    document.getElementById("profileOverlay").style.width = "500px";
+}
+
+function closeProfileMenu() {
+    document.getElementById("profileOverlay").style.width = "0";
+}
+</script>
+
 
 <!-- ##### Footer Area End ##### -->
 <script src="<?= asset('public/app-layout/js/jquery/jquery-2.2.4.min.js') ?>"></script>
