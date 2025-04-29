@@ -60,7 +60,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                             <input type="text" class="form-control" id="password" name="password"
                                 placeholder="Input your new password here">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm">update</button>
+                        <button type="submit" class="btn btn-danger btn-md col-12" onclick="return confirm('Apakah anda yakin ingin mengubah data akun?');">update</button>
                     </form>
                 </div>
             </div>
