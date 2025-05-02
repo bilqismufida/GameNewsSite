@@ -24,7 +24,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> HomeLander</a>
                         </li>
                         <li class="breadcrumb-item"><a href="#"><?= $post['category'] ?></a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $post['title'] ?></li>
