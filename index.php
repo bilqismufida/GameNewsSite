@@ -39,11 +39,27 @@ require_once "activities/Home.php";
 
 //helpers 
 
-spl_autoload_register(function ($className) {
-    $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
-    $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
-    include $path . $className . '.php'; 
+// spl_autoload_register(function ($className) {
+//     $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
+//     $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+//     include $path . $className . '.php'; 
+// });
+spl_autoload_register(function ($class) {
+    $class = str_replace('App\\', '', $class); // remove "App\" from class
+    $path = 'activities/' . str_replace('\\', '/', $class) . '.php';
+
+    if (file_exists($path)) {
+        include $path;
+    } else {
+        echo "Autoloader failed: $class → $path<br>";
+    }
 });
+// Fungsi ini secara otomatis memuat (autoload) class PHP saat dibutuhkan,
+// dengan mengubah namespace menjadi path file dan langsung meng-include-nya.
+// Dia ngilangin prefix 'App\' dan nyari file class-nya di folder 'activities/'.
+
+
+
 
 //parsidev deleted
 // function jalaliDate($date)

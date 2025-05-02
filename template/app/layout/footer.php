@@ -1,3 +1,7 @@
+<?php
+require_once(BASE_PATH . '/template/app/layout/script.php');
+?>
+
 <footer class="footer-area">
     <div class="container">
         <div class="row" style="
@@ -72,6 +76,12 @@
         </div>
     </div>
 </footer>
+
+
+<!-- ##### Footer Area End ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+
 <script>
 function openProfileMenu() {
     document.getElementById("profileOverlay").style.width = "30%";
@@ -93,28 +103,7 @@ document.addEventListener('click', function(event) {
         !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
         closeProfileMenu();
     }
-});
-</script>
-
-
-<!-- ##### Footer Area End ##### -->
-<script src="<?= asset('public/app-layout/js/jquery/jquery-2.2.4.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/bootstrap/popper.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/bootstrap/bootstrap.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/plugins/plugins.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/active.js') ?>"></script>
-
-<!-- ##### All Javascript Script ##### -->
-<!-- <script src="js/jquery/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap/popper.min.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/plugins/plugins.js"></script> -->
-<!-- jQuery-2.2.4 js -->
-<!-- Popper js -->
-<!-- Bootstrap js -->
-<!-- All Plugins js -->
-<!-- Active js -->
-
+});</script>
 
 </body>
 
