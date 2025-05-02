@@ -145,7 +145,7 @@ class Home
 
 
         public function commentStore($request)
-        {
+        { 
 
                 if (isset($_SESSION['user'])) {
                         if ($_SESSION['user'] != null) {

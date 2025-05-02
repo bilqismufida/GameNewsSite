@@ -1,48 +1,103 @@
-<!-- Preloader -->
-<div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-<!-- ##### Header Area Start ##### -->
 <?php
-require_once(BASE_PATH . '/template/app/layout/header.php');
+require_once(BASE_PATH . "/template/author/layouts/head-tag.php");
 ?>
-<!-- ##### Header Area End ##### -->
+<div class="row mt-3">
 
-<!-- ##### Hero Area Start ##### -->
-<?php
-//require_once('app/layout/hero.php');
-?>
-<!-- ##### Hero Area End ##### -->
-
-<!-- ##### Trending Posts Area End ##### -->
-
-<!-- ##### Post Area Start ##### -->
-<section class="vizew-post-area mb-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-7 col-lg-8">
-                <!-- All Post Area -->
-                <div class="all-posts-area">
-                    <!-- Section Heading -->
-                    <div class="section-heading style-2">
-                        <h4>INDEX ADMIN</h4>
-                        <div class="line"></div>
-                    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a href="<?= url('admin/post') ?>" class="text-decoration-none">
+            <div class="card text-white bg-dracula mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center"><span><i
+                            class="fas fa-newspaper"></i> Article</span> <span
+                        class="badge badge-pill right"><?= $postCount['COUNT(*)']; ?></span></div>
+                <div class="card-body">
+                    <section class="d-flex justify-content-between align-items-center font-12">
+                        <span class=""><i class="fas fa-bolt"></i> Views <span
+                                class="badge badge-pill mx-1"><?= $postsViews['SUM(view)']; ?></span></span>
+                    </section>
                 </div>
             </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a href="<?= url('admin/comment') ?>" class="text-decoration-none">
+            <div class="card text-white bg-neon-life mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center"><span><i
+                            class="fas fa-comments"></i> Comment</span> <span
+                        class="badge badge-pill right"><?= $commentsCount['COUNT(*)']; ?></span></div>
+                <div class="card-body">
+                    <!--                        <h5 class="card-title">Info card title</h5>-->
+                    <section class="d-flex justify-content-between align-items-center font-12">
+                        <span class=""><i class="fa fa-eye-slash"></i> Unseen <span
+                                class="badge badge-pill mx-1"><?= $commentsUnseenCount['COUNT(*)']; ?></span></span>
+                        <span class=""><i class="fa fa-check-circle"></i> Approved <span
+                                class="badge badge-pill mx-1"><?= $commentsApprovedCount['COUNT(*)']; ?></span></span>
+                    </section>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-4">
+        <h2 class="h6 pb-0 mb-0">
+            Most viewed posts
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>title</th>
+                        <th>view</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($postsWithView as $key => $post) { ?>
+                        <tr>
+                            <td><a class="text-primary" href="<?= url('admin/post') ?>"><?= $key += 1 ?></a></td>
+                            <td><a class="text-dark" href="<?= url('admin/post') ?>"><?= $post['title'] ?></a></td>
+                            <td><span class="badge badge-secondary"><?= $post['view'] ?></span></td>
+                        </tr>
+                    <?php } ?>
+
+                </tbody>
+            </table>
         </div>
     </div>
-</section>
-<!-- ##### Post Area End ##### -->
+    <div class="col-4">
+        <h2 class="h6 pb-0 mb-0">
+            Comments
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>username</th>
+                        <th>comment</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($lastComments as $key => $comment) { ?>
 
-<!-- ##### Footer Area Start ##### -->
+                        <tr>
+                            <td><a class="text-primary" href="<?= url('admin/comment') ?>"><?= $key += 1 ?></a></td>
+                            <td><a class="text-dark" href="<?= url('admin/comment') ?>"><?= $comment['username'] ?></a>
+                            </td>
+                            <td><a class="text-dark" href="<?= url('admin/comment') ?>"><?= $comment['comment'] ?></a></td>
+                            <td><span class="badge badge-warning"><?= $comment['status'] ?></span></td>
+                        </tr>
+                    <?php } ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <?php
-require_once(BASE_PATH . '/template/app/layout/footer.php');
+require_once(BASE_PATH . "/template/author/layouts/footer.php");
 ?>
-<!-- ##### Footer Area Start ##### -->

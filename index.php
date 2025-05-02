@@ -2,6 +2,9 @@
 
 use Auth\Auth;
 use Parsidev\Jalali\jDate;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start();
 
@@ -54,6 +57,8 @@ spl_autoload_register(function ($class) {
         echo "Autoloader failed: $class → $path<br>";
     }
 });
+
+
 // Fungsi ini secara otomatis memuat (autoload) class PHP saat dibutuhkan,
 // dengan mengubah namespace menjadi path file dan langsung meng-include-nya.
 // Dia ngilangin prefix 'App\' dan nyari file class-nya di folder 'activities/'.
@@ -231,7 +236,7 @@ uri('admin/post/update/{id}', 'Admin\Post', 'update', "POST");
 uri('admin/post/delete/{id}', 'Admin\Post', 'delete');
 uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
-
+ 
 // banners
 uri('admin/banner', 'Admin\Banner', 'index');
 uri('admin/banner/create', 'Admin\Banner', 'create');
@@ -292,6 +297,15 @@ uri('contact', 'App\Home', 'contact');
 
 //Author
 uri('author', 'App\Author', 'index');
+
+uri('author/post', 'App\Author', 'indexPost');
+uri('author/post/create', 'App\Author', 'create');
+uri('author/post/store', 'App\Author', 'store', "POST");
+uri('author/post/edit/{id}', 'App\Author', 'edit');
+uri('author/post/update/{id}', 'App\Author', 'update', "POST");
+uri('author/post/delete/{id}', 'App\Author', 'delete');
+uri('author/post/breaking-news/{id}', 'App\Author', 'breakingNews');
+uri('author/post/selected/{id}', 'App\Author', 'selected');
 
 
 echo '404 - not found';

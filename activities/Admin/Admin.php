@@ -4,8 +4,6 @@ namespace Admin;
 
 use Auth\Auth;
 
-
-
 class Admin{ 
 
     protected $currentDomain;
@@ -75,7 +73,4 @@ class Admin{
                 }
 
         }
-
-
-
 }
