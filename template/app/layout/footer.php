@@ -1,19 +1,17 @@
-<footer class="footer-area">
+<footer class="footer-area bg-white pt-5">
     <div class="container">
-        <div class="row" style="
-    display: flex;
-    justify-content: space-between;">
+        <div class="row" style="display: flex; justify-content: space-between;">
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-xl-3">
-                <div class="footer-widget mb-70">
+                <div class="footer-widget mb-4">
                     <!-- Logo -->
-                    <a href="index.php" class="foo-logo d-block mb-4"><img src="<?= asset('public/setting/icon.jpeg')?>" alt="logo"></a>
+                    <a href="index.php" class="foo-logo d-block mb-3"><img src="<?= asset('public/setting/icon.jpeg')?>" alt="logo"></a>
                     <!-- Footer Newsletter Area -->
                     <div class="footer-nl-area">
-                        <form action="#" method="post">
-                            <input type="email" name="nl-email" class="form-control" id="nlEmail"
+                        <form action="#" method="post" class="d-flex">
+                            <input type="email" name="nl-email" class="form-control me-2" id="nlEmail"
                                 placeholder="Your email">
-                            <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                         </form>
                     </div>
                 </div>
@@ -21,10 +19,10 @@
 
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-xl-3">
-                <div class="footer-widget mb-70">
-                    <h6 class="widget-title">Our Address</h6>
+                <div class="footer-widget mb-4">
+                    <h6 class="widget-title text-danger">Our Address</h6>
                     <!-- Contact Address -->
-                    <div class="contact-address">
+                    <div class="contact-address text-secondary">
                         <p>101 E 129th St, East Chicago, <br>IN 46312, US</p>
                         <p>Phone: 001-1234-88888</p>
                         <p>Email: info.colorlib@gmail.com</p>
@@ -43,28 +41,26 @@
     </div>
 
     <!-- Copywrite Area -->
-    <div class="copywrite-area">
+    <div class="copywrite-area bg-danger text-white py-3">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Copywrite Text -->
-                <div class="col-12 col-sm-6">
-                    <p class="copywrite-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                    <p class="copywrite-text mb-0 small">
                         Copyright &copy;
                         <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-                        is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        is made with <i class="fa fa-heart-o text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank" class="text-white text-decoration-underline">Colorlib</a>
                     </p>
                 </div>
                 <div class="col-12 col-sm-6">
                     <nav class="footer-nav">
-                        <ul>
-                            <li><a href="#">Advertise</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Disclaimer</a></li>
-                            <li><a href="#">Privacy</a></li>
+                        <ul class="list-inline text-sm-end mb-0">
+                            <li class="list-inline-item"><a href="#" class="text-white">Advertise</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-white">About</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-white">Contact</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-white">Disclaimer</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-white">Privacy</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -72,6 +68,8 @@
         </div>
     </div>
 </footer>
+
+
 
 
 <!-- ##### Footer Area End ##### -->

@@ -1,10 +1,10 @@
-<section class="trending-posts-area section-padding-80">
+<section class="trending-posts-area bg-white section-padding-80">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <!-- Section Heading -->
-                <div class="section-heading">
-                    <h4>Trending News Game Semua panca </h4>
+                <div class="section-heading ">
+                    <h4 class="text-dark">Trending News Game</h4>
                     <div class="line"></div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                                 <?= $popularPost['category'] ?>
                             </a>
                             <a href="<?= url('show-post/' . $popularPost['id']) ?>" class="post-title mb-2">
-                                <?= $popularPost['title'] ?>
+                             <?= $popularPost['title'] ?>
                             </a>
                             <div class="post-meta d-flex align-items-center mb-2">
                                 <a href="#" class="post-author"><?= $popularPost['username'] ?></a>
