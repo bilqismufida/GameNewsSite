@@ -69,17 +69,17 @@ List the ready features here:
 8. after creating the database name click on import.
 
 9. browse the file in directory
-   [OnlineNewsSite/database/news-project.sql].
+   [GameNewsSite/database/news-project.sql].
 
 10. after importing successfully.
 
-11. open any browser and type http://localhost/OnlineNewsSite/
+11. open any browser and type http://localhost/GameNewsSite/
 
 12. first register and then login
 
 13. Admin account details for login:
 
-- Email: `onlinenewssite@admin.com and`
+- Email: `gamenewssite@admin.com and`
 - Password: `123456789`
 
 > **Note** <br>

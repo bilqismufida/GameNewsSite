@@ -66,6 +66,19 @@ if (isset($_SESSION['user'])) {
             z-index: 79;
         }
 
+        /* Semi-transparent background overlay */
+        .overlay-background {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1999;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+            display: none;
+        }
+
         /* Profile Overlay */
         .overlay {
             height: 100%;
@@ -74,9 +87,10 @@ if (isset($_SESSION['user'])) {
             z-index: 2000;
             top: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #212121;
+            /* Solid color for the sidebar */
             overflow-x: hidden;
-            transition: 0.5s;
+            transition: 0.4s;
             padding-top: 60px;
         }
 
@@ -95,6 +109,7 @@ if (isset($_SESSION['user'])) {
             right: 45px;
             font-size: 40px;
             cursor: pointer;
+            color: #ffffff;
         }
 
         .profile-info h3 {
@@ -122,10 +137,12 @@ if (isset($_SESSION['user'])) {
             border: none;
             border-radius: 0;
         }
-  .form-control:focus {
-    box-shadow: none;
-    color: #ffffff;
-  background-color: #393c3d; }
+
+        .form-control:focus {
+            box-shadow: none;
+            color: #ffffff;
+            background-color: #393c3d;
+        }
     </style>
 </head>
 
@@ -212,8 +229,7 @@ if (isset($_SESSION['user'])) {
                                             <?php } ?>
                                         </ul>
                                     </li>
-
-                                    <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="<?= url('contact') ?> ">Contact</a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -223,11 +239,13 @@ if (isset($_SESSION['user'])) {
             </div>
         </div>
     </header>
+    <!-- Semi-transparent background overlay -->
+    <div id="overlayBackground" class="overlay-background" onclick="closeProfileMenu()"></div>
 
-    <!-- Overlay Side Menu -->
+    <!-- Profile Overlay -->
     <div id="profileOverlay" class="overlay">
         <div class="overlay-content">
-            <span class="closebtn" onclick="closeProfileMenu()">&times;</span>
+            <!-- <span class="closebtn" onclick="closeProfileMenu()">&times;</span> -->
             <?php if (isset($_SESSION['user'])): ?>
                 <div class="profile-info">
                     <i class="fa fa-user-circle" style="font-size: 60px;"></i>

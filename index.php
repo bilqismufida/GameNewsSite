@@ -217,7 +217,6 @@ uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
 
 // banners
-
 uri('admin/banner', 'Admin\Banner', 'index');
 uri('admin/banner/create', 'Admin\Banner', 'create');
 uri('admin/banner/store', 'Admin\Banner', 'store', 'POST');
@@ -226,7 +225,6 @@ uri('admin/banner/update/{id}', 'Admin\Banner', 'update', 'POST');
 uri('admin/banner/delete/{id}', 'Admin\Banner', 'delete');
 
 // users
-
 uri('admin/user', 'Admin\User', 'index');
 uri('admin/user/edit/{id}', 'Admin\User', 'edit');
 uri('admin/user/update/{id}', 'Admin\User', 'update', 'POST');
@@ -238,7 +236,6 @@ uri('admin/comment', 'Admin\Comment', 'index');
 uri('admin/comment/change-status/{id}', 'Admin\Comment', 'changeStatus');
 
 // menu
-
 uri('admin/menu', 'Admin\Menu', 'index');
 uri('admin/menu/create', 'Admin\Menu', 'create');
 uri('admin/menu/store', 'Admin\Menu', 'store', 'POST');
@@ -271,6 +268,7 @@ uri('show-category/{id}', 'App\Home', 'category');
 uri('comment-store', 'App\Home', 'commentStore', 'POST');
 uri('profile', 'App\Home', 'profile');
 uri('most-view', 'App\Home', 'mostViewed');
+uri('contact', 'App\Home', 'contact');
 
 echo '404 - not found';
 exit;

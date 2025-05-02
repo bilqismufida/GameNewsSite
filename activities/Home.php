@@ -206,6 +206,10 @@ class Home
 
                 require_once(BASE_PATH . '/template/app/profile.php');
         }
+        public function contact()
+        {
+                require_once(BASE_PATH . '/template/app/contact.php');
+        }
 
 
         protected function redirectBack()

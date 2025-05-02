@@ -91,3 +91,4 @@ require_once(BASE_PATH . '/template/app/layout/trending.php');
 <?php
 require_once(BASE_PATH . '/template/app/layout/footer.php');
 ?>
+<!-- ##### Footer Area Start ##### -->

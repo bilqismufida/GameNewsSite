@@ -72,15 +72,28 @@
         </div>
     </div>
 </footer>
-
 <script>
 function openProfileMenu() {
-    document.getElementById("profileOverlay").style.width = "500px";
+    document.getElementById("profileOverlay").style.width = "30%";
+    document.getElementById("overlayBackground").style.display = "block";
 }
 
 function closeProfileMenu() {
     document.getElementById("profileOverlay").style.width = "0";
+    document.getElementById("overlayBackground").style.display = "none";
 }
+
+// Close the overlay when clicking outside of it
+document.addEventListener('click', function(event) {
+    var overlay = document.getElementById('profileOverlay');
+    var background = document.getElementById('overlayBackground');
+    
+    // Check if the click was outside the overlay content and the overlay is open
+    if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') && 
+        !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
+        closeProfileMenu();
+    }
+});
 </script>
 
 
