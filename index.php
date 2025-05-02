@@ -37,7 +37,7 @@ require_once 'activities/Auth/Auth.php';
 //Home
 require_once "activities/Home.php";
 
-//helpers
+//helpers 
 
 spl_autoload_register(function ($className) {
     $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
@@ -250,11 +250,15 @@ uri('admin/web-setting/store', 'Admin\WebSetting', 'store', 'POST');
 
 // Auth
 uri('register', 'Auth\Auth', 'register');
+uri('register-aut', 'Auth\Auth', 'registerAut');
 uri('register/store', 'Auth\Auth', 'registerStore', "POST");
+uri('register/author', 'Auth\Auth', 'registerAuthor', "POST");
 
 uri('login', 'Auth\Auth', 'login');
 uri('check-login', 'Auth\Auth', 'checkLogin', "POST");
 uri('logout', 'Auth\Auth', 'logout');
+
+
 //user update
 uri('user/edit/{id}', 'Auth\Auth', 'edit');
 uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
@@ -269,6 +273,10 @@ uri('comment-store', 'App\Home', 'commentStore', 'POST');
 uri('profile', 'App\Home', 'profile');
 uri('most-view', 'App\Home', 'mostViewed');
 uri('contact', 'App\Home', 'contact');
+
+//Author
+uri('author', 'App\Author', 'index');
+
 
 echo '404 - not found';
 exit;

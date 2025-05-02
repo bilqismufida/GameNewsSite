@@ -4,7 +4,7 @@ namespace App;
 
 use Database\DataBase;
 
-class Home 
+class Author 
 {
 
         public function index()
@@ -30,7 +30,7 @@ class Home
                 $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
 
 
-                require_once(BASE_PATH . '/template/app/index.php');
+                require_once('C:\xampp\htdocs\GameNewsSite\template\author\index.php');
         }
 
         public function header(){
@@ -41,7 +41,7 @@ class Home
                 
                 $user = $db->select("SELECT * FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
 
-                require(BASE_PATH . '/template/app/layout/header.php');
+                require(BASE_PATH . '/template/author/layout/header.php');
         }
 
         public function footer()
@@ -57,14 +57,14 @@ class Home
                 LIMIT 0, 1
                 ')->fetchAll();
 
-                require_once(BASE_PATH . '/template/app/layout/footer.php');
+                require_once(BASE_PATH . '/template/author/layout/footer.php');
 
         }
 
         public function sideBar(){
                 $db = new DataBase();
                 $topSelectedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3')->fetchAll();
-                require_once(BASE_PATH . '/template/app/layout/sidebar.php');
+                require_once(BASE_PATH . '/template/author/layout/sidebar.php');
         }
 
         public function show($id)
@@ -90,7 +90,7 @@ class Home
                 // Fetch comments
                 $comments = $db->select("SELECT *, 
                              (SELECT username FROM users WHERE users.id = comments.user_id) AS username 
-                             FROM comments WHERE post_id = ? AND status = 'approved'", [$id])->fetchAll();
+                             FROM comments WHERE post_id = ? AND status = 'authorroved'", [$id])->fetchAll();
 
                 // Fetch other necessary data
                 $categories = $db->select("SELECT * FROM categories")->fetchAll();
@@ -110,40 +110,9 @@ class Home
                                       FROM posts ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
 
                 // Load the view
-                require_once(BASE_PATH . '/template/app/show-post.php');
-        }
-
-
-        // public function show($id)
-        // {
-
-        //         $db = new DataBase();
-
-        //         //anomali buatan
-        //         $categories = $db->select("SELECT * FROM categories")->fetchAll();
-
-        //         $post = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE id = ?', [$id])->fetch();
-
-        //         $comments = $db->select("SELECT *, (SELECT username FROM users WHERE users.id = comments.user_id) AS username FROM comments WHERE post_id = ? AND status = 'approved'", [$id])->fetchAll();
-
-        //         $setting = $db->select('SELECT * FROM websetting')->fetch();
-
-        //         $menus = $db->select('SELECT * FROM menus WHERE parent_id IS NULL')->fetchAll();
-
-        //         $catz = $db->select('SELECT * FROM menus WHERE parent_id IS NULL')->fetchAll();
-
-        //         $sidebarBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
-
-        //         $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 3')->fetchAll();
-
-        //         $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
-
-
-        //         require_once(BASE_PATH . '/template/app/show-post.php');
-
-        // }
-
-
+                require_once(BASE_PATH . '/template/author/show-post.php');
+        }        
+        
         public function commentStore($request)
         {
 
@@ -164,7 +133,7 @@ class Home
         public function mostViewed(){
                 $db = new DataBase();
                 $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 6')->fetchAll();
-                require_once(BASE_PATH . "/template/app/most-viewed.php");
+                require_once(BASE_PATH . "/template/author/most-viewed.php");
 
         }
 
@@ -191,7 +160,7 @@ class Home
                 $sidebarBanner = $db->select("SELECT * FROM `banners` LIMIT 0,1;")->fetch();
                 $bodyBanner = $db->select("SELECT * FROM `banners` ORDER BY created_at DESC LIMIT 0,1;")->fetch();
 
-                require_once(BASE_PATH . "/template/app/show-category.php");
+                require_once(BASE_PATH . "/template/author/show-category.php");
         }
 
         public function profile()
@@ -204,36 +173,11 @@ class Home
                 $db = new DataBase();
                 $user = $db->select("SELECT * FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
 
-                require_once(BASE_PATH . '/template/app/profile.php');
+                require_once(BASE_PATH . '/template/author/profile.php');
         }
         public function contact()
         {
-                require_once(BASE_PATH . '/template/app/contact.php');
-        }
-        public function indexAuthor()
-        {
-            $db = new DataBase();
-    
-            // $setting = $db->select('SELECT * FROM websetting')->fetch();
-    
-            //anomali buatan
-            $categories = $db->select("SELECT * FROM categories")->fetchAll();
-    
-    
-            // $breakingNewsZ = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3')->fetch();
-            $breakingNews = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3');
-    
-            $lastPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts ORDER BY created_at DESC LIMIT 0, 9')->fetchAll();
-    
-            $bodyBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
-            $sidebarBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
-    
-            $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 3')->fetchAll();
-    
-            $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
-    
-    
-            require_once(BASE_PATH . "/template/author/index.php");
+                require_once(BASE_PATH . '/template/author/contact.php');
         }
 
 

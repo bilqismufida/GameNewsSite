@@ -120,11 +120,11 @@
                     <div class="login-content">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h4>Great to have you back!</h4>
+                            <h4>Come be one of them author!</h4>
                             <div class="line"></div>
                         </div>
 
-                        <form action="<?= url('register/store') ?>" method="post">
+                        <form action="<?= url('register/author') ?>" method="post">
                             <?php
                             $message = flash('register_error');
                             if (!empty($message)) {
@@ -154,12 +154,6 @@
                                     <a class="txt2" href="<?= url('login') ?>">
                                         <p>
                                             <i>Login your Account</i>
-                                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                                        </p>
-                                    </a>
-                                    <a class="txt2" href="<?= url('register-aut') ?>">
-                                        <p>
-                                            <i>or Become an Author!</i>
                                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                                         </p>
                                     </a>

@@ -108,6 +108,12 @@
                                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                                         </p>
                                     </a>
+                                    <a class="txt2" href="<?= url('register-aut') ?>">
+                                        <p>
+                                            <i>or Become an Author!</i>
+                                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                                        </p>
+                                    </a>
                                 </div>
                             </div>
                             <button type="submit" class="btn vizew-btn w-100 mt-30">Login</button>
