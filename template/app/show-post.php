@@ -62,8 +62,8 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 
                             <div class="d-flex justify-content-between mb-30">
                                 <div class="post-meta d-flex align-items-center">
-                                    <a href="#" class="post-author"><?= $post['username'] ?></a>
-                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                    <!-- <a href="#" class="post-author"><?= $post['username'] ?></a>
+                                    <i class="fa fa-circle" aria-hidden="true"></i> -->
                                     <a href="#" class="post-date"><?= $post['created_at'] ?></a>
                                 </div>
                                 <div class="post-meta d-flex">
@@ -81,12 +81,13 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 
                         <!-- Post Author -->
                         <div class="vizew-post-author d-flex align-items-center py-5">
-                            <div class="post-author-thumb">
+                            <!-- <div class="post-author-thumb">
                                 <img class="single-post-area" src="img/bg-img/30.jpg" alt="">
-                            </div>
+                            </div> -->
                             <div class="post-author-desc pl-4">
+                                <h4>Written By: </h4>
                                 <a href="#" class="author-name"><?= $post['username'] ?></a>
-                                <p>Hello! My name is Nicolas Sarkozy. I’m a web designer and front-end web developer
+                                <!-- <p>Hello! My name is Nicolas Sarkozy. I’m a web designer and front-end web developer
                                     with over fifteen years of professional.</p>
                                 <div class="post-author-social-info">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -94,7 +95,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                                     <a href="#"><i class="fa fa-pinterest"></i></a>
                                     <a href="#"><i class="fa fa-linkedin"></i></a>
                                     <a href="#"><i class="fa fa-dribbble"></i></a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
