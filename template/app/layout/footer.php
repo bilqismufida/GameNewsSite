@@ -1,4 +1,4 @@
-<footer class="footer-area bg-white pt-5">
+<footer class="footer-area bg-black pt-5">
     <div class="container">
         <div class="row" style="display: flex; justify-content: space-between;">
             <!-- Footer Widget Area -->

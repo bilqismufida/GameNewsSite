@@ -27,7 +27,7 @@ require_once(BASE_PATH . '/template/app/layout/trending.php');
 <!-- ##### Trending Posts Area End ##### -->
 
 <!-- ##### Post Area Start ##### -->
-<section class="vizew-post-area mb-50">
+<section class="vizew-post-area  bg-white mb-50 text-dark">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-7 col-lg-8">
@@ -35,13 +35,13 @@ require_once(BASE_PATH . '/template/app/layout/trending.php');
                 <div class="all-posts-area">
                     <!-- Section Heading -->
                     <div class="section-heading style-2">
-                        <h4>Latest NewsZZZ</h4>
+                        <h4>Latest News</h4>
                         <div class="line"></div>
                     </div>
 
                     <!-- Latest News -->
                     <?php foreach ($lastPosts as $lastPost) { ?>
-                        <div class="single-post-area mb-30">
+                        <div class="single-post-area mb-30 ">
                             <div class="row align-items-center">
                                 <div class="col-12 col-lg-6">
                                     <!-- Post Thumbnail -->

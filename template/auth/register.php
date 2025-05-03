@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
 </head>
 
-<body>
+<body class="bg-white">
+
     <!-- Top Header Area -->
     <header class="header-area">
         <div class="top-header-area">
@@ -55,12 +56,12 @@
         </div>
 
         <!-- Navbar Area -->
-        <div class="custom-main-menu" id="sticker">
+        <div class="vizew-main-menu" id="sticker">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
 
                     <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="customNav">
+                    <nav class="classy-navbar justify-content-between" id="vizewNav">
 
                         <!-- Nav brand -->
                         <!-- <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a> -->
@@ -104,6 +105,8 @@
                                         aria-hidden="true"></i>
                                     Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Register</li>
+                            
+                            
                         </ol>
                     </nav>
                 </div>
@@ -120,7 +123,7 @@
                     <div class="login-content">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h4>Great to have you back!</h4>
+                            <h4 class="text-dark">Great to have you back!</h4>
                             <div class="line"></div>
                         </div>
 
@@ -166,7 +169,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <button type="submit" class="btn custom-btn w-100 mt-30">Register</button>
+                            <button type="submit" class="btn btn-success w-100 mt-30">Register</button>
+
                         </form>
                     </div>
                 </div>

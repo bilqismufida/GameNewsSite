@@ -45,7 +45,8 @@
     </style>
 </head>
 
-<body>
+<body class="bg-white">
+
     <header class="header-area">
         <!-- Top Header Area -->
         <div class="top-header-area">
@@ -123,12 +124,15 @@
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="http://localhost/GameNewsSite/"><i class="fa fa-home"
-                                        aria-hidden="true"></i>
-                                    Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Login</li>
-                        </ol>
+                    <ol class="breadcrumb">
+                     <li class="breadcrumb-item">
+                     <a href="http://localhost/GameNewsSite/" class="text-dark">
+                     <i class="fa fa-home" aria-hidden="true"></i> Home
+                     </a>
+                    </li>
+                     <li class="breadcrumb-item active text-dark" aria-current="page">Login</li>    
+                </ol>
+
                     </nav>
                 </div>
             </div>
@@ -143,9 +147,9 @@
                 <div class="col-12 col-md-6">
                     <div class="login-content">
                         <!-- Section Title -->
-                        <div class="section-heading">
-                            <h4>Great to have you back!</h4>
-                            <div class="line"></div>
+                        <div class="section-heading text-dark">
+                        <h4 class="text-dark">Great to have you back!</h4>
+                         <div class="line"></div>
                         </div>
 
                         <form action="<?= url('check-login') ?>" method="post">

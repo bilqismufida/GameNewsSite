@@ -34,7 +34,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 <!-- ##### Breadcrumb Area End ##### -->
 
 <!-- ##### Archive Grid Posts Area Start ##### -->
-<div class="vizew-grid-posts-area mb-80">
+<div class="vizew-grid-posts-area mb-80 bg-white">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
