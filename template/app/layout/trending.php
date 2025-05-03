@@ -3,8 +3,13 @@
         <div class="row">
             <div class="col-12">
                 <!-- Section Heading -->
+<<<<<<< HEAD
                 <div class="section-heading ">
                     <h4 class="text-dark">Trending News Game</h4>
+=======
+                <div class="section-heading">
+                    <h4>Trending News</h4>
+>>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
                     <div class="line"></div>
                 </div>
             </div>

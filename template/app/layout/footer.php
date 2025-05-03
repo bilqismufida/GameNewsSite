@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 <footer class="footer-area bg-black pt-5">
+=======
+<?php
+require_once(BASE_PATH . '/template/app/layout/script.php');
+?>
+
+<footer class="footer-area">
+>>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
     <div class="container">
         <div class="row" style="display: flex; justify-content: space-between;">
             <!-- Footer Widget Area -->
@@ -73,38 +81,31 @@
 
 
 <!-- ##### Footer Area End ##### -->
-<script src="<?= asset('public/app-layout/js/jquery/jquery-2.2.4.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/bootstrap/popper.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/bootstrap/bootstrap.min.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/plugins/plugins.js') ?>"></script>
-<script src="<?= asset('public/app-layout/js/active.js') ?>"></script>
 
 <!-- ##### All Javascript Script ##### -->
-<!-- <script src="js/jquery/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap/popper.min.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/plugins/plugins.js"></script> -->
-<!-- jQuery-2.2.4 js -->
-<!-- Popper js -->
-<!-- Bootstrap js -->
-<!-- All Plugins js -->
-<!-- Active js -->
 
-<script src="<?= asset('public/app/js/vendor/jquery-2.2.4.min.js') ?>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="<?= asset('public/app/js/vendor/bootstrap.min.js') ?>"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="<?= asset('public/app/js/easing.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/hoverIntent.js') ?>"></script>
-    <script src="<?= asset('public/app/js/superfish.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/jquery.ajaxchimp.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/jquery.magnific-popup.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/mn-accordion.js') ?>"></script>
-    <script src="<?= asset('public/app/js/jquery-ui.js') ?>"></script>
-    <script src="<?= asset('public/app/js/jquery.nice-select.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/owl.carousel.min.js') ?>"></script>
-    <script src="<?= asset('public/app/js/mail-script.js') ?>"></script>
-    <script src="<?= asset('public/app/js/main.js') ?>"></script>
+<script>
+function openProfileMenu() {
+    document.getElementById("profileOverlay").style.width = "30%";
+    document.getElementById("overlayBackground").style.display = "block";
+}
+
+function closeProfileMenu() {
+    document.getElementById("profileOverlay").style.width = "0";
+    document.getElementById("overlayBackground").style.display = "none";
+}
+
+// Close the overlay when clicking outside of it
+document.addEventListener('click', function(event) {
+    var overlay = document.getElementById('profileOverlay');
+    var background = document.getElementById('overlayBackground');
+    
+    // Check if the click was outside the overlay content and the overlay is open
+    if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') && 
+        !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
+        closeProfileMenu();
+    }
+});</script>
 
 </body>
 

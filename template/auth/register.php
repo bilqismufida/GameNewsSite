@@ -95,7 +95,7 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcrumb Area Start ##### -->
-    <div class="custom-breadcrumb">
+    <div class="vizew-breadcrumb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -116,7 +116,7 @@
     <!-- ##### Breadcrumb Area End ##### -->
 
     <!-- ##### Register Area Start ##### -->
-    <div class="custom-login-area section-padding-80">
+    <div class="vizew-login-area section-padding-80">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
@@ -137,13 +137,6 @@
                                 </div>
                                 <?php
                             } ?>
-                            <!-- <div class="form-group">
-                                <input class="form-control" type="text" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="Password">
-                            </div> -->
-
                             <div class="form-group" data-validate="Valid email is required: ex@abc.xyz">
                                 <input class="form-control" type="text" name="username" placeholder="Username">
 
@@ -160,17 +153,27 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="custom-control">
+                                <div class="vizew-control">
                                     <a class="txt2" href="<?= url('login') ?>">
                                         <p>
                                             <i>Login your Account</i>
                                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                                         </p>
                                     </a>
+                                    <a class="txt2" href="<?= url('register-aut') ?>">
+                                        <p>
+                                            <i>or Become an Author!</i>
+                                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                                        </p>
+                                    </a>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <button type="submit" class="btn btn-success w-100 mt-30">Register</button>
 
+=======
+                            <button type="submit" class="btn vizew-btn w-100 mt-30">Register</button>
+>>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
                         </form>
                     </div>
                 </div>

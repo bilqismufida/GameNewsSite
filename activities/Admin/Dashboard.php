@@ -7,7 +7,7 @@ use DataBase\DataBase;
 
 class Dashboard extends Admin
 {
-    
+
     public function index()
     {
         $db = new DataBase();
@@ -28,6 +28,7 @@ class Dashboard extends Admin
         $lastComments = $db->select('SELECT comments.id, comments.comment, comments.status, comments.post_id, users.username FROM comments, users WHERE comments.user_id = users.id order by comments.created_at DESC LIMIT 0,5 ;');
 
 
-        require_once (BASE_PATH . "/template/admin/dashboard/index.php");
+        require_once(BASE_PATH . "/template/admin/dashboard/index.php");
     }
+
 }

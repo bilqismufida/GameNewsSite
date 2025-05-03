@@ -45,6 +45,7 @@
     </style>
 </head>
 
+<<<<<<< HEAD
 <body class="bg-white">
 
     <header class="header-area">
@@ -116,6 +117,12 @@
     </header>
 
 
+=======
+<body>
+    <?php
+        require_once(BASE_PATH . '/template/app/layout/header.php');
+    ?>
+>>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcrumb Area Start ##### -->
@@ -175,6 +182,12 @@
 
                                                 Create your Account
                                             </i>
+                                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                                        </p>
+                                    </a>
+                                    <a class="txt2" href="<?= url('register-aut') ?>">
+                                        <p>
+                                            <i>or Become an Author!</i>
                                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                                         </p>
                                     </a>
