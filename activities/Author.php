@@ -32,10 +32,34 @@ class Author
                 $commentsApprovedCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `status` = 'approved' ;")->fetch();
                 $postsWithView = $db->select("SELECT * FROM `posts` WHERE `user_id` = ? ORDER BY `view` DESC LIMIT 0,5 ;", [$_SESSION['user']]);
 
-                // $postsComments = $db->select("SELECT `posts`.`id`, `posts`.`title`, COUNT(`comments`.`post_id`) AS 'comment_count' FROM `posts` WHERE `user_id` = ? LEFT JOIN  `comments`  ON `posts`.`id` = `comments`.`post_id` GROUP BY `posts`.`id` ORDER BY `comment_count` DESC LIMIT 0,5 ;", [$_SESSION['user']]);
+                $posts = $db->select(
+                        "SELECT posts.*, 
+                        (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, 
+                        (SELECT username FROM users WHERE users.id = posts.user_id) AS username, 
+                        (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts
+                        WHERE posts.user_id = ?  
+                        ORDER BY view", [$_SESSION['user']])->fetchAll();
 
+                $comments = $db->select(
+                        "SELECT 
+                                comments.*, 
+                                posts.title, 
+                                posts.summary, 
+                                posts.image,
+                                users.username, 
+                                categories.name AS category
+                        FROM comments
+                        JOIN posts ON comments.post_id = posts.id
+                        JOIN users ON posts.user_id = users.id
+                        JOIN categories ON posts.cat_id = categories.id
+                        WHERE posts.user_id = ?
 
-                $lastComments = $db->select("SELECT comments.id, comments.comment, comments.status, comments.post_id, users.username, posts.user_id FROM comments, users, posts WHERE posts.user_id = ? order by comments.created_at DESC LIMIT 0,5 ;", [$_SESSION['user']]);
+                        ORDER BY view", [$_SESSION['user']])->fetchAll();
+
+                $commentsX = $db->select(
+                        "SELECT comments.id, comments.comment, 
+                        comments.status, comments.post_id, users.username, posts.user_id, posts.title 
+                        FROM comments, users, posts WHERE posts.user_id = ?", [$_SESSION['user']])->fetchAll();
 
 
 
@@ -91,11 +115,11 @@ class Author
 
                 $posts = $db->select(
                         "SELECT posts.*, 
-           categories.name AS category, 
-           (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count
-    FROM posts
-    JOIN categories ON posts.cat_id = categories.id
-    WHERE posts.user_id = ?",
+                                categories.name AS category, 
+                                (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count
+                        FROM posts
+                        JOIN categories ON posts.cat_id = categories.id
+                        WHERE posts.user_id = ?",
                         [$_SESSION['user']]
                 );
                 // $commentsCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `user_id` = ?", [$_SESSION['user']])->fetch();

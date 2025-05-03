@@ -1,6 +1,3 @@
-
-
-
 <!-- Preloader -->
 <!-- <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
@@ -71,7 +68,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                                         <?= $post['comments_count'] ?></a>
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>
                                         <?= $post['view'] ?></a>
-                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -125,37 +122,41 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                                 <?php } ?>
                             </ul>
                         </div>
+                        <?php
+                        if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
+                            ?>
+                            <!-- Post A Comment Area -->
+                            <div class="post-a-comment-area">
 
-                        <!-- Post A Comment Area -->
-                        <div class="post-a-comment-area">
-
-                            <!-- Section Title -->
-                            <div class="section-heading style-2">
-                                <h4>Leave a reply</h4>
-                                <div class="line"></div>
-                            </div>
-
-                            <!-- Reply Form -->
-                            <?php if(isset($_SESSION['user'])) { ?>
-                                <div class="contact-form-area">
-                                    <form action="<?= url('comment-store') ?>" method="post">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <textarea name="comment" class="form-control" id="comment"
-                                                    placeholder="Comment Here*"></textarea>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="btn vizew-btn mt-30" type="submit">Submit Comment</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <!-- Section Title -->
+                                <div class="section-heading style-2">
+                                    <h4>Leave a reply</h4>
+                                    <div class="line"></div>
                                 </div>
-                            <?php }else{ ?>
-                                <h5><i>Please Login Before Commenting</i></h5>
-                                <a href="<?= url('login')?>" class="btn vizew-btn mt-30">Login</a>
-                            <?php }?>
-                        </div>
 
+                                <!-- Reply Form -->
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                    <div class="contact-form-area">
+                                        <form action="<?= url('comment-store') ?>" method="post">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <textarea name="comment" class="form-control" id="comment"
+                                                        placeholder="Comment Here*"></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn vizew-btn mt-30" type="submit">Submit Comment</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                <?php } else { ?>
+                                    <h5><i>Please Login Before Commenting</i></h5>
+                                    <a href="<?= url('login') ?>" class="btn vizew-btn mt-30">Login</a>
+                                <?php } ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
 
-require_once(BASE_PATH . '/template/author/layouts/head-tag.php')
+require_once(BASE_PATH . '/template/author/layout/header.php')
 
     ?>
 
@@ -69,6 +69,6 @@ require_once(BASE_PATH . '/template/author/layouts/head-tag.php')
 
 <?php
 
-require_once(BASE_PATH . '/template/author/layouts/footer.php')
+require_once(BASE_PATH . '/template/author/layout/footer.php')
 
     ?>

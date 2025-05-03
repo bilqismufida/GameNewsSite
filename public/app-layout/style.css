@@ -975,7 +975,7 @@ input:focus {
     margin-top: 20px; }
     .single-post-area .post-content .post-title {
       display: block;
-      color: #ffffff;
+      color: #000;
       margin-bottom: 15px;
       font-size: 20px; }
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
