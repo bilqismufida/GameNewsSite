@@ -162,7 +162,7 @@
                                     </a>
                                     <a class="txt2" href="<?= url('register-aut') ?>">
                                         <p>
-                                            <i>or Become an Author!</i>
+                                            <i>or Become an Author! perhaps</i>
                                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                                         </p>
                                     </a>
