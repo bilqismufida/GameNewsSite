@@ -1,6 +1,6 @@
 <?php
 
-require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
+require_once(BASE_PATH . '/template/author/layouts/head-tag.php')
 
     ?>
 
@@ -13,7 +13,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 <section class="row my-3">
     <section class="col-12">
 
-        <form method="post" onsubmit="return syncQuill()" action="<?= url('admin/post/update/' . $post['id']) ?>"
+        <form method="post" onsubmit="return syncQuill()" action="<?= url('author/post/update/' . $post['id']) ?>"
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -78,6 +78,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 
 <?php
 
-require_once(BASE_PATH . '/template/admin/layouts/footer.php')
+require_once(BASE_PATH . '/template/author/layouts/footer.php')
 
     ?>

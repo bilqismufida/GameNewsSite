@@ -1,7 +1,12 @@
 <?php
-$db = new \Database\DataBase();
+$db = new Database\DataBase();
 $categories = $db->select("SELECT * FROM categories")->fetchAll();
-
+$setting = $db->select('SELECT * FROM websetting')->fetch();
+$topSelectedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3')->fetchAll();
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = $db->select("SELECT * FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,15 +16,15 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="<?= asset($setting['icon']) ?>">
+    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.jpeg') ?>" />
     <!-- Meta Description -->
-    <meta name="description" content="<?= $setting['description'] ?>">
+    <meta name="description" content="Game News Website">
     <!-- Meta Keyword -->
-    <meta name="keywords" content="<?= $setting['keywords'] ?>">
+    <meta name="keywords" content="Game News Website">
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title><?= $setting['title'] ?></title>
+    <title>Game News Website</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
@@ -60,10 +65,88 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
             line-height: 1;
             z-index: 79;
         }
+
+        /* Semi-transparent background overlay */
+        .overlay-background {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1999;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+            display: none;
+        }
+
+        /* Profile Overlay */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 0;
+            background-color: #212121;
+            /* Solid color for the sidebar */
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 60px;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 10%;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            color: white;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .profile-info h3 {
+            margin-top: 20px;
+        }
+
+        .profile-info a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .form-control {
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            width: 100%;
+            background-color: #393c3d;
+            font-size: 12px;
+            margin-bottom: 15px;
+            padding: 10px 30px;
+            color: #ffffff;
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border: none;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            color: #ffffff;
+            background-color: #393c3d;
+        }
     </style>
 </head>
 
-<body> 
+<body>
     <header class="header-area">
         <!-- Top Header Area -->
         <div class="top-header-area">
@@ -89,10 +172,11 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
                             </div>
                             <!-- Login -->
                             <?php if (isset($_SESSION['user'])): ?>
-                                <a class="btn btn-danger" href="<?= url('logout') ?>">
-                                    <span class="lnr lnr-exit"></span>
-                                    <span style="font-size:15px;"> Logout</span>
+                                <a class="login-btn" href="javascript:void(0)" onclick="openProfileMenu()">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span style="font-size:15px;"> Profile</span>
                                 </a>
+
                             <?php else: ?>
                                 <a class="btn btn-primary" href="<?= url('login') ?>">
                                     <span class="lnr lnr-enter-down"></span>
@@ -135,13 +219,7 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <?php foreach ($menus as $menu) { ?>
-                                        <li class="menu-active">
-                                            <a href="<?= $menu['url'] ?>">
-                                                <?= $menu['name'] ?>
-                                            </a>
-                                        </li>
-                                    <?php } ?>
+                                    <li><a href="<?= url('most-view') ?>">Most Viewed</a></li>
                                     <li><a href="#">Categories</a>
                                         <ul class="dropdown">
                                             <?php foreach ($categories as $category) { ?>
@@ -151,8 +229,7 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
                                             <?php } ?>
                                         </ul>
                                     </li>
-
-                                    <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="<?= url('contact') ?> ">Contact</a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -162,3 +239,26 @@ $categories = $db->select("SELECT * FROM categories")->fetchAll();
             </div>
         </div>
     </header>
+    <!-- Semi-transparent background overlay -->
+    <div id="overlayBackground" class="overlay-background" onclick="closeProfileMenu()"></div>
+
+    <!-- Profile Overlay -->
+    <div id="profileOverlay" class="overlay">
+        <div class="overlay-content">
+            <!-- <span class="closebtn" onclick="closeProfileMenu()">&times;</span> -->
+            <?php if (isset($_SESSION['user'])): ?>
+                <div class="profile-info">
+                    <i class="fa fa-user-circle" style="font-size: 60px;"></i>
+                    <h3><?= htmlspecialchars($user['username']) ?></h3>
+                    <h5><?= htmlspecialchars($user['email']) ?></h5>
+                    <a href="<?= url('profile') ?>" class="btn btn-primary" style="margin-top: 10px;">Go to Profile</a>
+                    <a href="<?= url('logout') ?>" class="btn btn-danger" style="margin-top: 10px;">Logout</a>
+                </div>
+            <?php else: ?>
+                <div class="profile-info">
+                    <h3>Welcome, Guest!</h3>
+                    <a href="<?= url('login') ?>" class="btn btn-primary" style="margin-top: 10px;">Login</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>

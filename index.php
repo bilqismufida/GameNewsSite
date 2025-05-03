@@ -2,6 +2,9 @@
 
 use Auth\Auth;
 use Parsidev\Jalali\jDate;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start();
 
@@ -37,13 +40,31 @@ require_once 'activities/Auth/Auth.php';
 //Home
 require_once "activities/Home.php";
 
-//helpers
+//helpers 
 
-spl_autoload_register(function ($className) {
-    $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
-    $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
-    include $path . $className . '.php'; 
+// spl_autoload_register(function ($className) {
+//     $path = BASE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
+//     $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+//     include $path . $className . '.php'; 
+// });
+spl_autoload_register(function ($class) {
+    $class = str_replace('App\\', '', $class); // remove "App\" from class
+    $path = 'activities/' . str_replace('\\', '/', $class) . '.php';
+
+    if (file_exists($path)) {
+        include $path;
+    } else {
+        echo "Autoloader failed: $class → $path<br>";
+    }
 });
+
+
+// Fungsi ini secara otomatis memuat (autoload) class PHP saat dibutuhkan,
+// dengan mengubah namespace menjadi path file dan langsung meng-include-nya.
+// Dia ngilangin prefix 'App\' dan nyari file class-nya di folder 'activities/'.
+
+
+
 
 //parsidev deleted
 // function jalaliDate($date)
@@ -215,9 +236,8 @@ uri('admin/post/update/{id}', 'Admin\Post', 'update', "POST");
 uri('admin/post/delete/{id}', 'Admin\Post', 'delete');
 uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
-
+ 
 // banners
-
 uri('admin/banner', 'Admin\Banner', 'index');
 uri('admin/banner/create', 'Admin\Banner', 'create');
 uri('admin/banner/store', 'Admin\Banner', 'store', 'POST');
@@ -226,7 +246,6 @@ uri('admin/banner/update/{id}', 'Admin\Banner', 'update', 'POST');
 uri('admin/banner/delete/{id}', 'Admin\Banner', 'delete');
 
 // users
-
 uri('admin/user', 'Admin\User', 'index');
 uri('admin/user/edit/{id}', 'Admin\User', 'edit');
 uri('admin/user/update/{id}', 'Admin\User', 'update', 'POST');
@@ -238,7 +257,6 @@ uri('admin/comment', 'Admin\Comment', 'index');
 uri('admin/comment/change-status/{id}', 'Admin\Comment', 'changeStatus');
 
 // menu
-
 uri('admin/menu', 'Admin\Menu', 'index');
 uri('admin/menu/create', 'Admin\Menu', 'create');
 uri('admin/menu/store', 'Admin\Menu', 'store', 'POST');
@@ -253,11 +271,19 @@ uri('admin/web-setting/store', 'Admin\WebSetting', 'store', 'POST');
 
 // Auth
 uri('register', 'Auth\Auth', 'register');
+uri('register-aut', 'Auth\Auth', 'registerAut');
 uri('register/store', 'Auth\Auth', 'registerStore', "POST");
+uri('register/author', 'Auth\Auth', 'registerAuthor', "POST");
 
 uri('login', 'Auth\Auth', 'login');
 uri('check-login', 'Auth\Auth', 'checkLogin', "POST");
 uri('logout', 'Auth\Auth', 'logout');
+
+
+//user update
+uri('user/edit/{id}', 'Auth\Auth', 'edit');
+uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
+
 
 //home
 uri('/', 'App\Home', 'index');
@@ -265,6 +291,21 @@ uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');
 uri('comment-store', 'App\Home', 'commentStore', 'POST');
+uri('profile', 'App\Home', 'profile');
+uri('most-view', 'App\Home', 'mostViewed');
+uri('contact', 'App\Home', 'contact');
+
+//Author
+uri('author', 'App\Author', 'index');
+
+uri('author/post', 'App\Author', 'indexPost');
+uri('author/post/create', 'App\Author', 'create');
+uri('author/post/store', 'App\Author', 'store', "POST");
+uri('author/post/edit/{id}', 'App\Author', 'edit');
+uri('author/post/update/{id}', 'App\Author', 'update', "POST");
+uri('author/post/delete/{id}', 'App\Author', 'delete');
+uri('author/post/breaking-news/{id}', 'App\Author', 'breakingNews');
+uri('author/post/selected/{id}', 'App\Author', 'selected');
 
 
 echo '404 - not found';

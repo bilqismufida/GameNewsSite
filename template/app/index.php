@@ -1,12 +1,12 @@
 <!-- Preloader -->
-<!-- <div class="preloader d-flex align-items-center justify-content-center">
+<div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div> -->
+    </div>
 
 <!-- ##### Header Area Start ##### -->
 <?php
@@ -42,7 +42,7 @@ require_once(BASE_PATH . '/template/app/layout/trending.php');
                     <!-- Latest News -->
                     <?php foreach ($lastPosts as $lastPost) { ?>
                         <div class="single-post-area mb-30">
-                            <div class="row align-items-center">
+                            <div class="row align-items-center"> 
                                 <div class="col-12 col-lg-6">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
@@ -91,3 +91,4 @@ require_once(BASE_PATH . '/template/app/layout/trending.php');
 <?php
 require_once(BASE_PATH . '/template/app/layout/footer.php');
 ?>
+<!-- ##### Footer Area Start ##### -->

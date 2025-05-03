@@ -124,7 +124,7 @@
                             <div class="line"></div>
                         </div>
 
-                        <form action="<?= url('register/store') ?>" method="post">
+                        <form action="<?= url('register/author') ?>" method="post">
                             <?php
                             $message = flash('register_error');
                             if (!empty($message)) {

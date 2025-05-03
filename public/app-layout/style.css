@@ -736,7 +736,7 @@ input:focus {
         color: #db4437; }
     .single-blog-post .post-content .post-meta a {
       display: inline-block;
-      color: #595959;
+      color: #b7b7b7;
       font-size: 12px; }
       .single-blog-post .post-content .post-meta a:hover, .single-blog-post .post-content .post-meta a:hover {
         color: #ffffff; }
@@ -997,9 +997,9 @@ input:focus {
       .single-post-area .post-content .post-meta a:last-child {
         margin-right: 0; }
     .single-post-area .post-content .post-meta .post-author {
-      color: #595959; }
+      color: #b7b7b7; }
     .single-post-area .post-content .post-meta .post-date {
-      color: #595959; }
+      color: #b7b7b7; }
     .single-post-area .post-content .post-meta i.fa-circle {
       color: #a6a6a6;
       font-size: 6px;
@@ -1281,9 +1281,9 @@ input:focus {
       .post-details-content .post-content .post-meta a:last-child {
         margin-right: 0; }
     .post-details-content .post-content .post-meta .post-author {
-      color: #595959; }
+      color: #b7b7b7; }
     .post-details-content .post-content .post-meta .post-date {
-      color: #595959; }
+      color: #b7b7b7; }
     .post-details-content .post-content .post-meta i.fa-circle {
       color: #a6a6a6;
       font-size: 6px;
@@ -1937,8 +1937,9 @@ input:focus {
   border: none;
   border-radius: 0; }
   .form-control:focus {
-    box-shadow: none;
-    background-color: #393c3d; }
+    /* box-shadow: none; */
+  color: #ffffff;
+  background-color: #393c3d; }
 
 select.form-control {
   -webkit-appearance: none;
