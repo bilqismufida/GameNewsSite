@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 <footer class="footer-area bg-black pt-5">
-=======
-<?php
-require_once(BASE_PATH . '/template/app/layout/script.php');
-?>
-
-<footer class="footer-area">
->>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
     <div class="container">
         <div class="row" style="display: flex; justify-content: space-between;">
             <!-- Footer Widget Area -->

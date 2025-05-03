@@ -45,7 +45,6 @@
     </style>
 </head>
 
-<<<<<<< HEAD
 <body class="bg-white">
 
     <header class="header-area">
@@ -117,12 +116,6 @@
     </header>
 
 
-=======
-<body>
-    <?php
-        require_once(BASE_PATH . '/template/app/layout/header.php');
-    ?>
->>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcrumb Area Start ##### -->

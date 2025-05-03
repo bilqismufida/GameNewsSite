@@ -168,12 +168,8 @@
                                     </a>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <button type="submit" class="btn btn-success w-100 mt-30">Register</button>
 
-=======
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Register</button>
->>>>>>> 56050bdc39f0aa9791e41ab7587b360c85e53d59
                         </form>
                     </div>
                 </div>
