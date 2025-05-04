@@ -396,6 +396,7 @@ input:focus {
               color: #db4437; }
   .top-header-area .top-social-info {
     position: relative;
+    color: #fff;
     z-index: 1;
     margin-right: 15px; }
     .top-header-area .top-social-info a {

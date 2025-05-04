@@ -78,7 +78,8 @@ class Home
                 $post = $db->select('SELECT posts.*, 
                         (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, 
                         (SELECT username FROM users WHERE users.id = posts.user_id) AS username, 
-                        (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category 
+                        (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category, 
+                        (SELECT id FROM categories WHERE categories.id = posts.cat_id) AS cat_id 
                         FROM posts WHERE id = ?', [$id])->fetch();
 
                 // Check if post exists
@@ -111,7 +112,8 @@ class Home
 
                 // Load the view
                 require_once(BASE_PATH . '/template/app/show-post.php');
-        }
+
+        } 
 
 
         // public function show($id)

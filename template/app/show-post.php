@@ -10,7 +10,12 @@
 
 <!-- ##### Header Area Start ##### -->
 <?php
-require_once(BASE_PATH . '/template/app/layout/header.php');
+
+if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
+    require_once(BASE_PATH . '/template/app/layout/header.php');
+}else{
+    require_once(BASE_PATH . '/template/author/layout/header.php');
+}
 ?>
 <!-- ##### Header Area End ##### -->
 
@@ -23,7 +28,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#"><?= $post['category'] ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?=url('show-category/'.$post['cat_id'])?>"><?= $post['category'] ?></a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $post['title'] ?></li>
                     </ol>
                 </nav>
@@ -39,7 +44,8 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
         <div class="row">
             <div class="col-12">
                 <div class=" mb-50  post-thumbnail">
-                    <img class="" src="<?= asset($post['image']) ?>" alt="">
+                    <img class="post-thumbnail" src="<?= asset($post['image']) ?>" alt="">
+                    
                 </div>
             </div>
         </div>
@@ -84,15 +90,6 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                             <div class="post-author-desc pl-4">
                                 <h4>Written By: </h4>
                                 <a href="#" class="author-name"><?= $post['username'] ?></a>
-                                <!-- <p>Hello! My name is Nicolas Sarkozy. I’m a web designer and front-end web developer
-                                    with over fifteen years of professional.</p>
-                                <div class="post-author-social-info">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                                </div> -->
                             </div>
                         </div>
 
@@ -137,17 +134,13 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                                 <!-- Reply Form -->
                                 <?php if (isset($_SESSION['user'])) { ?>
                                     <div class="contact-form-area">
-                                        <form action="<?= url('comment-store') ?>" method="post">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <textarea name="comment" class="form-control" id="comment"
-                                                        placeholder="Comment Here*"></textarea>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button class="btn vizew-btn mt-30" type="submit">Submit Comment</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    <form action="<?= url('comment-store') ?>" method="post">
+                                    <div class="form-group">
+                                            <input type="text" value="<?= $id ?>" name="post_id" class="d-none">
+                                        <textarea class="form-control mb-10 text-left" rows="5" name="comment" placeholder="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'text'" required=""></textarea>
+                                    </div>
+                                    <button type="submit" class="btn vizew-btn mt-30 text-uppercase">Send</button>
+                                </form>
                                     </div>
                                 <?php } else { ?>
                                     <h5><i>Please Login Before Commenting</i></h5>

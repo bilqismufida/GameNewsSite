@@ -3,70 +3,85 @@
 require_once(BASE_PATH . '/template/author/layout/header.php')
 
     ?>
+    
+<section class="vizew-post-area mt-5 mb-50">
+    <div class="container">
+        <div class="row">
+            <div class=" col-12 col-md-7 col-lg-8">
+                <!-- All Post Area -->
+                <div class="all-posts-area">
+                    <!-- Section Heading -->
+                    <div class="section-heading style-2">
+                        <h4>Write an Article</h4>
+                        <div class="line"></div>
+                    </div>
 
-<section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Create Article</h1>
-</section>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <form method="post" action="<?= url('author/post/store') ?>" enctype="multipart/form-data"
+                                onsubmit="return syncQuill()">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="Enter title ..." required autofocus>
+                                </div>
 
-<section class="row my-3">
-    <section class="col-12">
+                                <div class="form-group">
+                                    <label for="cat_id">Category</label>
+                                    <select name="cat_id" id="cat_id" class="form-control" required autofocus>
+                                        <?php foreach ($categories as $category) { ?>
+                                            <option value="<?= $category['id'] ?>">
+                                                <?= $category['name'] ?>
+                                            </option>
 
-        <form method="post" action="<?= url('author/post/store') ?>" enctype="multipart/form-data"
-            onsubmit="return syncQuill()">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title ..." required
-                    autofocus>
-            </div>
-
-            <div class="form-group">
-                <label for="cat_id">Category</label>
-                <select name="cat_id" id="cat_id" class="form-control" required autofocus>
-                    <?php foreach ($categories as $category) { ?>
-                        <option value="<?= $category['id'] ?>">
-                            <?= $category['name'] ?>
-                        </option>
-
-                    <?php } ?>
+                                        <?php } ?>
 
 
-                </select>
-            </div>
+                                    </select>
+                                </div>
 
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" id="image" name="image" class="form-control-file" required autofocus>
-            </div>
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <input type="file" id="image" name="image" class="form-control-file" required
+                                        autofocus>
+                                </div>
 
-            <div class="form-group">
-                <!-- <label for="published_at">published at</label> -->
-                <input type="hidden" class="form-control" id="published_at" name="published_at" required autofocus>
-                <!-- <input type="text" class="form-control" id="published_at_view" required autofocus> -->
-            </div>
+                                <div class="form-group">
+                                    <!-- <label for="published_at">published at</label> -->
+                                    <input type="hidden" class="form-control" id="published_at" name="published_at"
+                                        required autofocus>
+                                    <!-- <input type="text" class="form-control" id="published_at_view" required autofocus> -->
+                                </div>
 
-            <div class="form-group">
-                <label for="summary">summary</label>
-                <textarea class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required
-                    autofocus></textarea>
-            </div>
+                                <div class="form-group">
+                                    <label for="summary">summary</label>
+                                    <textarea class="form-control" id="summary" name="summary" placeholder="summary ..."
+                                        rows="3" required autofocus></textarea>
+                                </div>
 
-            <div class="form-group">
-                <label for="body">body</label>
-                <!-- <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="5" required
+                                <div class="form-group">
+                                    <label for="body">body</label>
+                                    <!-- <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="5" required
                     autofocus></textarea> -->
-                <!-- The Quill editor -->
-                <div id="toolbar"></div>
-                <div id="editor" style="height: 200px;"></div>
+                                    <!-- The Quill editor -->
+                                    <div id="toolbar"></div>
+                                    <div id="editor" style="height: 200px;"></div>
 
-                <!-- Hidden textarea that will be submitted -->
-                <textarea name="body" id="body" style="display: none;"></textarea>
+                                    <!-- Hidden textarea that will be submitted -->
+                                    <textarea name="body" id="body" style="display: none;"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn vizew-btn w-100">store</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-
-            <button type="submit" class="btn btn-primary btn-sm">store</button>
-        </form>
-    </section>
+        </div>
+    </div>
 </section>
-
 
 <?php
 

@@ -284,7 +284,7 @@ uri('logout', 'Auth\Auth', 'logout');
 uri('user/edit/{id}', 'Auth\Auth', 'edit');
 uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
 
-
+  
 //home
 uri('/', 'App\Home', 'index');
 uri('home', 'App\Home', 'index');

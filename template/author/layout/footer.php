@@ -3,7 +3,12 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="<?= asset('public/admin-panel/js/bootstrap.min.js') ?>"></script>
+<script src="<?= asset('public/admin-panel/js/mdb.min.js') ?>"></script>
+<script src="<?= asset('public/ckeditor/ckeditor.js') ?>"></script>
+<script src="<?= asset('public/jalalidatepicker/persian-date.min.js') ?>"></script>
+<script src="<?= asset('public/jalalidatepicker/persian-datepicker.min.js') ?>"></script>
 
 <footer class="footer-area">
     <div class="container">
@@ -14,7 +19,8 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
             <div class="col-12 col-sm-6 col-xl-3">
                 <div class="footer-widget mb-70">
                     <!-- Logo -->
-                    <a href="index.php" class="foo-logo d-block mb-4"><img src="<?= asset('public/setting/icon.jpeg')?>" alt="logo"></a>
+                    <a href="index.php" class="foo-logo d-block mb-4"><img
+                            src="<?= asset('public/setting/icon.jpeg') ?>" alt="logo"></a>
                     <!-- Footer Newsletter Area -->
                     <div class="footer-nl-area">
                         <form action="#" method="post">
@@ -84,21 +90,21 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <!-- Initialize Quill editor -->
 <script>
-  var quill = new Quill('#editor', {
-  theme: 'snow',
-  placeholder: 'Write your article...',
-  modules: {
-    toolbar: true // 👈 THIS loads Quill’s default full toolbar
-  }
-});
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Write your article...',
+        modules: {
+            toolbar: true // 👈 THIS loads Quill’s default full toolbar
+        }
+    });
 
 </script>
 
 <script>
-  function syncQuill() {
-    document.querySelector('#body').value = quill.root.innerHTML;
-    return true;
-  }
+    function syncQuill() {
+        document.querySelector('#body').value = quill.root.innerHTML;
+        return true;
+    }
 </script>
 
 <!-- ##### Footer Area End ##### -->
@@ -106,28 +112,28 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 <!-- ##### All Javascript Script ##### -->
 
 <script>
-function openProfileMenu() {
-    document.getElementById("profileOverlay").style.width = "30%";
-    document.getElementById("overlayBackground").style.display = "block";
-}
-
-function closeProfileMenu() {
-    document.getElementById("profileOverlay").style.width = "0";
-    document.getElementById("overlayBackground").style.display = "none";
-}
-
-// Close the overlay when clicking outside of it
-document.addEventListener('click', function(event) {
-    var overlay = document.getElementById('profileOverlay');
-    var background = document.getElementById('overlayBackground');
-    
-    // Check if the click was outside the overlay content and the overlay is open
-    if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') && 
-        !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
-        closeProfileMenu();
+    function openProfileMenu() {
+        document.getElementById("profileOverlay").style.width = "30%";
+        document.getElementById("overlayBackground").style.display = "block";
     }
-});</script>
 
+    function closeProfileMenu() {
+        document.getElementById("profileOverlay").style.width = "0";
+        document.getElementById("overlayBackground").style.display = "none";
+    }
+
+    // Close the overlay when clicking outside of it
+    document.addEventListener('click', function (event) {
+        var overlay = document.getElementById('profileOverlay');
+        var background = document.getElementById('overlayBackground');
+
+        // Check if the click was outside the overlay content and the overlay is open
+        if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') &&
+            !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
+            closeProfileMenu();
+        }
+    });
+</script>
 </body>
 
 </html>

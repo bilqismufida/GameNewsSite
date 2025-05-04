@@ -31,25 +31,22 @@ if (isset($_SESSION['user'])) {
 
     <style>
         .single-post-area .post-thumbnail {
-            position: relative;
-            z-index: 1;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-        }
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: black; /* for the black bars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .single-post-area .post-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Keep your existing media queries */
-        @media only screen and (min-width: 768px) and (max-width: 991px),
-        only screen and (max-width: 767px) {
-            .single-post-area .post-thumbnail {
-                margin-bottom: 30px;
-            }
-        }
+.single-post-area .post-thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ✨ key change here */
+    background-color: black;
+}
 
         /* Existing .video-duration styling stays the same */
         .single-post-area .post-thumbnail .video-duration {

@@ -10,38 +10,46 @@
 
 <!-- ##### Header Area Start ##### -->
 <?php
-require_once(BASE_PATH . '/template/app/layout/header.php');
+
+if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
+    require_once(BASE_PATH . '/template/app/layout/header.php');
+}else{
+    require_once(BASE_PATH . '/template/author/layout/header.php');
+}
 ?>
 <!-- ##### Header Area End ##### -->
+
+<!-- ##### Breadcrumb Area Start ##### -->
+<div class="vizew-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb ">
+                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+
 
 <!-- ##### Post Area Start ##### -->
 <section class="trending-posts-area section-padding-80 mt-30 mb-30">
     <div class="container">
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center">
+            <div class="col-6 ">
                 <!-- All Post Area -->
-                <div class="all-posts-area">
+                <div class="all-posts-area style-2">
                     <!-- Section Heading -->
                     <div class="section-heading">
                         <h4>Edit Profile</h4>
                         <div class="line"></div>
                     </div>
-
-                    <!-- <div class="single-widget single-post-area">
-                        <ul>
-                            <li class="mb-5">
-                                <h4>Username:</h4>
-                                <h2><?= htmlspecialchars($user['username']) ?></h2>
-                            </li>
-                            <li class="mb-5">
-                                <h4>Email:</h4>
-                                <h2><?= htmlspecialchars($user['email']) ?></h2>
-                            </li>
-                        </ul>
-                        <a class="btn vizew-btn mt-10" href="<?= url('logout') ?>">
-                            <span style="font-size:15px;"> logout</span>
-                        </a>
-                    </div> -->
 
                     <form method="post" action="<?= url('user/update/' . $user['id']) ?>">
                         <div class="form-group">

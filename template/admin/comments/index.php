@@ -44,8 +44,10 @@
                 <td>
                     <?php if ($comment['status'] == 'seen') { ?>
                     <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click to approved</a>
-                    <?php } else { ?>
-                    <a role="button" class="btn btn-sm btn-warning text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click not to approved</a>
+                    <?php } else if ($comment['status'] == 'approved') { ?>
+                    <a role="button" class="btn btn-sm btn-warning text-black" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click not to approved</a>
+                    <?php } else  { ?>
+                    <a role="button" class="btn btn-sm btn-primary text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click to approved</a>
                     <?php } ?>
                 </td>
                 </tr>

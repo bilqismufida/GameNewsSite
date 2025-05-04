@@ -2,6 +2,8 @@
 require_once(BASE_PATH . '/template/app/layout/script.php');
 ?>
 
+
+
 <footer class="footer-area">
     <div class="container">
         <div class="row" style="

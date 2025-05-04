@@ -143,12 +143,12 @@ class Author
                         if ($request['image']) {
                                 $request = array_merge($request, ['user_id' => $_SESSION['user']]);
                                 $posts = $db->insert('posts', array_keys($request), $request);
-                                require_once BASE_PATH . '/template/author/post/index.php';
+                                require_once BASE_PATH . '/template/author/index.php';
                         } else {
-                                require_once BASE_PATH . '/template/author/post/index.php';
+                                require_once BASE_PATH . '/template/author/index.php';
                         }
                 } else {
-                        require_once BASE_PATH . '/template/author/post/index.php';
+                        require_once BASE_PATH . '/template/author/index.php';
                 }
         }
 

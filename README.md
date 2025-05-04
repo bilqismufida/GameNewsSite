@@ -115,7 +115,7 @@ Created by [@MobinaJafarian](https://github.com/MobinaJafarian) - feel free to c
 - di database 'post' row "selected" itu buat selected admin. 1 = tidak, 2 = ya.
 
 ## savepoint
-edit profile
+edit detail post page (image)
 
 ## Deleted Features
 > Mega Menu [navbar]

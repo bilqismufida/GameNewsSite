@@ -25,246 +25,33 @@ if (isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <!-- Site Title -->
     <title>Game News Website</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
 
+    <!-- Stylesheet -->
+    
+    <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
+        <!-- Bootstrap CSS (already included, probably) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Bootstrap JS Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Quill for text area form -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
-    <!-- add bold quill -->
-    <style>
-        /* Match Quill headings with Bootstrap styles */
-        .ql-editor h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .ql-editor h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .ql-editor h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .ql-editor h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .ql-editor h5 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .ql-editor h6 {
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Optional spacing and base styles */
-        .ql-editor p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* List style */
-        .ql-editor ol {
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .ql-editor ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .ql-editor li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Strong, italic, underline */
-        .ql-editor strong,
-        .ql-editor b {
-            font-weight: bold !important;
-        }
-
-        .ql-editor em,
-        .ql-editor i {
-            font-style: italic !important;
-        }
-
-        .ql-editor u {
-            text-decoration: underline !important;
-        }
-
-        /* Optional image styling */
-        .ql-editor img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.25rem;
-            margin: 1rem 0;
-        }
-
-        .truncate-cell {
-            max-width: 300px;
-            /* or whatever width you like */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/2663004844.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="<?= asset('template/author/layout/style-aut.css') ?>">
 
     <style>
-        .single-post-area .post-content .post-title {
-            display: block;
+        .vizew-breadcrumb .breadcrumb .breadcrumb-item li{
             color: #000;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
+            font-size: 16px;
+            font-weight: 400; }
 
-        .single-post-area .post-thumbnail {
-            position: relative;
-            z-index: 1;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-        }
-
-        .single-post-area .post-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Keep your existing media queries */
-        @media only screen and (min-width: 768px) and (max-width: 991px),
-        only screen and (max-width: 767px) {
-            .single-post-area .post-thumbnail {
-                margin-bottom: 30px;
-            }
-        }
-
-        /* Existing .video-duration styling stays the same */
-        .single-post-area .post-thumbnail .video-duration {
-            display: inline-block;
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            background-color: #0f1112;
-            padding: 6px 10px;
-            border-radius: 2px;
-            font-size: 14px;
-            color: #ffffff;
-            line-height: 1;
-            z-index: 79;
-        }
-
-        /* Semi-transparent background overlay */
-        .overlay-background {
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            z-index: 1999;
-            top: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Semi-transparent black */
-            display: none;
-        }
-
-        /* Profile Overlay */
-        .overlay {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            right: 0;
-            background-color: #212121;
-            /* Solid color for the sidebar */
-            overflow-x: hidden;
-            transition: 0.4s;
-            padding-top: 60px;
-        }
-
-        .overlay-content {
-            position: relative;
-            top: 10%;
-            width: 80%;
-            margin: auto;
-            text-align: center;
-            color: white;
-        }
-
-        .overlay .closebtn {
-            position: absolute;
-            top: 20px;
-            right: 45px;
-            font-size: 40px;
-            cursor: pointer;
-            color: #ffffff;
-        }
-
-        .profile-info h3 {
-            margin-top: 20px;
-        }
-
-        .profile-info a {
-            display: block;
-            margin: 10px 0;
-        }
-
-        .form-control {
-            position: relative;
-            z-index: 2;
-            height: 48px;
-            width: 100%;
-            background-color: #393c3d;
-            font-size: 12px;
-            margin-bottom: 15px;
-            padding: 10px 30px;
-            color: #ffffff;
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            border: none;
-            border-radius: 0;
-        }
-
-        .form-control:focus {
-            box-shadow: none;
-            color: #ffffff;
-            background-color: #393c3d;
-        }
-
-        a,
-        a:hover,
-        a:focus {
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            text-decoration: none;
-            outline: 0 solid transparent;
-            color: #a6a6a6;
-            font-weight: 500;
-            font-size: 14px;
-            font-family: "Roboto", sans-serif;
-        }
     </style>
 </head>
 
@@ -276,10 +63,10 @@ if (isset($_SESSION['user'])) {
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6"></div>
                     <div class="col-12 col-md-6">
-                        <div class="top-meta-data d-flex align-items-center justify-content-end">
+                        <div class="top-meta-data d-flex align-items-center justify-content-end text-white ">
                             <!-- Top Social Info -->
-                            <div class="top-social-info">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            <div class="top-social-info text-white">
+                                <a href="#"><i class="fa-brands fa-github"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-youtube-play"></i></a>
@@ -293,18 +80,8 @@ if (isset($_SESSION['user'])) {
                                 </form>
                             </div>
                             <!-- Login -->
-                            <?php if (isset($_SESSION['user'])): ?>
-                                <a class="login-btn text-white" href="javascript:void(0)" onclick="openProfileMenu()">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span style="font-size:15px;"> Profile</span>
-                                </a>
-
-                            <?php else: ?>
-                                <a class="btn btn-primary" href="<?= url('login') ?>">
-                                    <span class="lnr lnr-enter-down"></span>
-                                    <span style="font-size:15px;"> Login</span>
-                                </a>
-                            <?php endif; ?>
+                            <a class="ms-3 text-white " href="<?= url('logout') ?>"><i
+                                    class="fa-solid fa-right-to-bracket"></i> Logout</a>
                             <!-- <a href="login.php" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a> -->
                         </div>
                     </div>
@@ -322,7 +99,7 @@ if (isset($_SESSION['user'])) {
 
                         <!-- Nav brand -->
                         <!-- <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a> -->
-                        <a href="http://localhost/GameNewsSite/author">
+                        <a href="<?= url('author') ?>">
                             <img class="nav-brand" src="<?= asset($setting['icon']) ?>" alt="">
                         </a>
 
@@ -339,7 +116,7 @@ if (isset($_SESSION['user'])) {
                             </div>
 
                             <!-- Nav Start -->
-                            <div class="classynav">
+                            <!-- <div class="classynav">
                                 <ul>
                                     <li><a href="<?= url('most-view') ?>">Most Viewed</a></li>
                                     <li><a href="#">Categories</a>
@@ -353,7 +130,7 @@ if (isset($_SESSION['user'])) {
                                     </li>
                                     <li><a href="<?= url('contact') ?> ">Contact</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- Nav End -->
                         </div>
                     </nav>
@@ -382,5 +159,50 @@ if (isset($_SESSION['user'])) {
                     <a href="<?= url('login') ?>" class="btn btn-primary" style="margin-top: 10px;">Login</a>
                 </div>
             <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close text-white" disabled aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form method="post" action="<?= url('user/update/' . $user['id']) ?>">
+                        <div class="form-group mb-3">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="<?= $user['username'] ?>">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email"
+                                value="<?= $user['email'] ?>">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" id="password" name="password"
+                                placeholder="Input your new password here">
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Apakah anda yakin ingin mengubah data akun?');">Update</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>

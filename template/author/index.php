@@ -3,10 +3,10 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
 ?>
 
 <!-- ##### Post Area Start ##### -->
-<section class="vizew-post-area mb-50">
+<section class="vizew-post-area mt-5 mb-50">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-7 col-lg-8">
+            <div class=" col-12 col-md-7 col-lg-8">
                 <!-- All Post Area -->
                 <div class="all-posts-area">
                     <!-- Section Heading -->
@@ -18,7 +18,7 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                     <div class="row mt-2">
                         <div class="col-12">
                             <!-- Tabs Nav -->
-                            <ul class="nav nav-tabs" id="postCommentTab" role="tablist">
+                            <ul class="nav nav-tabs custom-tabs" id="postCommentTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="posts-tab" data-bs-toggle="tab"
                                         data-bs-target="#posts" type="button" role="tab" aria-controls="posts"
@@ -60,11 +60,9 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                                             <?= $post['title'] ?>
                                                         </a>
                                                         <div class="post-meta d-flex align-items-center mb-2">
-                                                            <a href="#"
-                                                                class="post-author"><?= $post['username'] ?></a>
+                                                            <a href="#" class="post-author"><?= $post['username'] ?></a>
                                                             <i class="fa fa-circle mx-2 text-muted" aria-hidden="true"></i>
-                                                            <a href="#"
-                                                                class="post-date"><?= $post['created_at'] ?></a>
+                                                            <a href="#" class="post-date"><?= $post['created_at'] ?></a>
                                                         </div>
                                                         <p class="mb-2"><?= $post['summary'] ?></p>
                                                         <div class="post-meta d-flex">
@@ -117,51 +115,21 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                     </div>
 
                 </div>
+
+                
             </div>
+            <?php
+                require_once(BASE_PATH . "/template/author/layout/sidebar.php");
+                ?>
         </div>
     </div>
 </section>
 <!-- ##### Post Area End ##### -->
 
 
-<div class="row mt-3">
 
-    <!-- ##### Post & Comment Count Start ##### -->
-    <!-- <div class="col-sm-6 col-lg-3">
-        <a href="<?= url('admin/post') ?>" class="text-decoration-none">
-            <div class="card text-white bg-dracula mb-3">
-                <div class="card-header d-flex justify-content-between align-items-center"><span><i
-                            class="fas fa-newspaper"></i> Article</span> <span
-                        class="badge badge-pill right"><?= $postCount['COUNT(*)']; ?></span></div>
-                <div class="card-body">
-                    <section class="d-flex justify-content-between align-items-center font-12">
-                        <span class=""><i class="fas fa-bolt"></i> Views <span
-                                class="badge badge-pill mx-1"><?= $postsViews['SUM(view)']; ?></span></span>
-                    </section>
-                </div>
-            </div>
-        </a>
-    </div> -->
-    <!-- <div class="col-sm-6 col-lg-3">
-        <a href="<?= url('admin/comment') ?>" class="text-decoration-none">
-            <div class="card text-white bg-neon-life mb-3">
-                <div class="card-header d-flex justify-content-between align-items-center"><span><i
-                            class="fas fa-comments"></i> Comment</span> <span
-                        class="badge badge-pill right"><?= $commentsCount['COUNT(*)']; ?></span></div>
-                <div class="card-body">
-                    <section class="d-flex justify-content-between align-items-center font-12">
-                        <span class=""><i class="fa fa-eye-slash"></i> Unseen <span
-                                class="badge badge-pill mx-1"><?= $commentsUnseenCount['COUNT(*)']; ?></span></span>
-                        <span class=""><i class="fa fa-check-circle"></i> Approved <span
-                                class="badge badge-pill mx-1"><?= $commentsApprovedCount['COUNT(*)']; ?></span></span>
-                    </section>
-                </div>
-            </div>
-        </a>
-    </div> -->
-    <!-- ##### Post & Comment Count End##### -->
 
-</div>
+
 
 
 

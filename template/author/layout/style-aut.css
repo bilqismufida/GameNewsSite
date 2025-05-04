@@ -1,0 +1,315 @@
+
+        /* Match Quill headings with Bootstrap styles */
+        .ql-editor h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .ql-editor h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .ql-editor h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .ql-editor h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .ql-editor h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .ql-editor h6 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Optional spacing and base styles */
+        .ql-editor p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* List style */
+        .ql-editor ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ql-editor ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ql-editor li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Strong, italic, underline */
+        .ql-editor strong,
+        .ql-editor b {
+            font-weight: bold !important;
+        }
+
+        .ql-editor em,
+        .ql-editor i {
+            font-style: italic !important;
+        }
+
+        .ql-editor u {
+            text-decoration: underline !important;
+        }
+
+        /* Optional image styling */
+        .ql-editor img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.25rem;
+            margin: 1rem 0;
+        }
+
+        .truncate-cell {
+            max-width: 300px;
+            /* or whatever width you like */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .single-post-area .post-content .post-title {
+            display: block;
+            color: #000;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .single-post-area .post-thumbnail {
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .single-post-area .post-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Keep your existing media queries */
+        @media only screen and (min-width: 768px) and (max-width: 991px),
+        only screen and (max-width: 767px) {
+            .single-post-area .post-thumbnail {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Existing .video-duration styling stays the same */
+        .single-post-area .post-thumbnail .video-duration {
+            display: inline-block;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            background-color: #0f1112;
+            padding: 6px 10px;
+            border-radius: 2px;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 1;
+            z-index: 79;
+        }
+
+        /* Semi-transparent background overlay */
+        .overlay-background {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1999;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+            display: none;
+        }
+
+        /* Profile Overlay */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 0;
+            background-color: #212121;
+            /* Solid color for the sidebar */
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 60px;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 10%;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            color: white;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .profile-info h3 {
+            margin-top: 20px;
+        }
+
+        .profile-info a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .form-control {
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            width: 100%;
+            background-color: #393c3d;
+            font-size: 12px;
+            margin-bottom: 15px;
+            padding: 10px 30px;
+            color: #ffffff;
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border: none;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            color: #ffffff;
+            background-color: #393c3d;
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            text-decoration: none;
+            outline: 0 solid transparent;
+            color: #a6a6a6;
+            font-weight: 500;
+            font-size: 14px;
+            font-family: "Roboto", sans-serif;
+        }
+        
+        
+        .custom-tabs .nav-link {
+            color: #000;
+            background-color: #f8f9fa;
+            border: 1px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .custom-tabs .nav-link:hover {
+            background-color: #e2e6ea;
+        }
+
+        .custom-tabs .nav-link.active {
+            background-color: #dc3545;
+            /* Bootstrap danger red */
+            color: #fff;
+            border-color: #dc3545 #dc3545 #fff;
+        }
+
+        .vizew-btn {
+            background-color: #db4437;
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            min-width: 160px;
+            height: 50px;
+            color: #ffffff;
+            border-radius: 5px;
+            border: none;
+            padding: 0 30px;
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .vizew-btn:hover,
+        .vizew-btn:focus {
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #0f1112;
+            color: #ffffff;
+            box-shadow: none;
+        }
+        
+        .modal-backdrop.show {
+            background-color: rgba(0, 0, 0, 1) !important;
+            z-index: 2;
+        }
+
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .btn-close:disabled {
+            pointer-events: none;
+        }
+
+        .form-control {
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            width: 100%;
+            background-color: #fff;
+            font-size: 12px;
+            margin-bottom: 15px;
+            padding: 10px 30px;
+            color: #393c3d;
+            -webkit-transition-duration: 500ms;
+            -o-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border: 1px solid #393c3d;
+            border-radius: 0;
+        }
+
+        .form-control:focus {
+            /* box-shadow: none; */
+            color: #ffffff;
+            background-color: #393c3d;
+        }
+        
+
+        
+        
+        

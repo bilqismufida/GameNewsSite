@@ -1,5 +1,3 @@
-
-
 <div class="col-12 col-md-5 col-lg-4">
     <div class="sidebar-area">
 
@@ -17,60 +15,62 @@
         <div class="single-widget latest-video-widget mb-50">
             <!-- Section Heading -->
             <div class="section-heading style-2 mb-30">
-                <h4>Editor's Choice</h4>
+                <h4>Article Data</h4>
                 <div class="line"></div>
             </div>
-
-            <?php foreach ($topSelectedPosts as $topSelectedPost) { ?>
-                <!-- Single Blog Post -->
-                <div class="single-post-area mb-30">
-                    <!-- Post Thumbnail -->
-                    <div class="post-thumbnail">
-                        <img src="<?= asset($topSelectedPost['image']) ?>" alt="Post Image">
-                    </div>
-
-                    <!-- Post Content -->
-                    <div class="post-content">
-                        <a href="<?= url('show-category/' . $topSelectedPost['cat_id']) ?>"
-                            class="post-cata cata-sm cata-danger">
-                            <?= $topSelectedPost['category'] ?>
-                        </a>
-                        <a href="<?= url('show-post/' . $topSelectedPost['id']) ?>" class="post-title mb-2">
-                            <?= $topSelectedPost['title'] ?>
-                        </a>
-                        <div class="post-meta d-flex align-items-center mb-2">
-                            <a href="#" class="post-author"><?= $topSelectedPost['username'] ?></a>
-                            <i class="fa fa-circle" aria-hidden="true"></i>
-                            <a href="#" class="post-date"><?= $topSelectedPost['created_at'] ?></a>
+            <div class="col-12"> <!-- full width -->
+                <div class="d-flex gap-3">
+                    <!-- Article Card -->
+                    <div class="card flex-fill">
+                        <div class="card-header">
+                            <i class="fas fa-newspaper me-1"></i> Article
                         </div>
-                        <div class="post-meta d-flex">
-                            <a href="#"><i class="fa fa-comments-o"
-                                    aria-hidden="true"></i><?= $topSelectedPost['comments_count'] ?></a>
+                        <div class="card-body">
+                            <a href="<?= url('admin/post') ?>" class="stretched-link text-decoration-none text-black">
+                                <?= $postCount['COUNT(*)']; ?>
+                            </a>
                         </div>
                     </div>
+
+                    <!-- Views Card -->
+                    <div class="card flex-fill">
+                        <div class="card-header">
+                            <i class="fas fa-eye me-1"></i> Views
+                        </div>
+                        <div class="card-body">
+                            <?= $postsViews['SUM(view)']; ?>
+                        </div>
+                    </div>
+
                 </div>
-
-            <?php } ?>
+                <div class=" mt-3">
+                    <a href="<?=url('author/post/create')?>" class="text-center vizew-btn w-100">
+                    <i class="fa-solid fa-pen-fancy me-1"></i>Write an Article
+                    </a>
+                </div>
+            </div>
         </div>
 
-
         <!-- ***** Single Widget ***** -->
-        <div class="single-widget newsletter-widget mb-50">
+        <div class="single-widget latest-video-widget mb-50">
             <!-- Section Heading -->
             <div class="section-heading style-2 mb-30">
-                <h4>Newsletter</h4>
+                <h4>Profile</h4>
                 <div class="line"></div>
             </div>
-            <p>Subscribe our newsletter gor get notification about new updates, information discount, etc.
+            <p class="text-black fw-bold">
+                <?= $user['username'] ?>
+            </p>
+            <p class="text-black fw-bold">
+                <?= $user['email'] ?>
             </p>
             <!-- Newsletter Form -->
             <div class="newsletter-form">
-                <form action="#" method="post">
-                    <input type="email" name="nl-email" class="form-control mb-15" id="emailnl"
-                        placeholder="Enter your email">
-                    <button type="submit" class="btn vizew-btn w-100">Subscribe</button>
-                </form>
+                <button class="btn text-left w-100" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                    <a href="#" >Edit</a>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
