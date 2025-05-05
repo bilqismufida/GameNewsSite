@@ -133,7 +133,7 @@ if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
 
                                 <!-- Reply Form -->
                                 <?php if (isset($_SESSION['user'])) { ?>
-                                    <div class="contact-form-area">
+                                    <div class="contact-form-area"> 
                                     <form action="<?= url('comment-store') ?>" method="post">
                                     <div class="form-group">
                                             <input type="text" value="<?= $id ?>" name="post_id" class="d-none">

@@ -11,7 +11,7 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                 <div class="all-posts-area">
                     <!-- Section Heading -->
                     <div class="section-heading style-2">
-                        <h4>Latest News</h4>
+                        <h4>Your Articles</h4>
                         <div class="line"></div>
                     </div>
 

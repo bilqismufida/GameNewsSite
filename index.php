@@ -269,6 +269,9 @@ uri('admin/web-setting', 'Admin\WebSetting', 'index');
 uri('admin/web-setting/set', 'Admin\WebSetting', 'set');
 uri('admin/web-setting/store', 'Admin\WebSetting', 'store', 'POST');
 
+//Contact
+uri('admin/contact', 'Admin\Contact', 'index');
+
 // Auth
 uri('register', 'Auth\Auth', 'register');
 uri('register-aut', 'Auth\Auth', 'registerAut');
@@ -286,7 +289,16 @@ uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
 
   
 //home
-uri('/', 'App\Home', 'index');
+if (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'user') {
+    uri('/', 'App\Home', 'index');
+}elseif (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'admin'){
+    uri('/', 'Admin\Dashboard', 'index');
+}elseif (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'author'){
+    uri('/', 'App\Author', 'index');
+
+}
+
+
 uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');
@@ -294,6 +306,7 @@ uri('comment-store', 'App\Home', 'commentStore', 'POST');
 uri('profile', 'App\Home', 'profile');
 uri('most-view', 'App\Home', 'mostViewed');
 uri('contact', 'App\Home', 'contact');
+uri('contact-store', 'App\Home', 'contactStore', 'POST');
 
 //Author
 uri('author', 'App\Author', 'index');

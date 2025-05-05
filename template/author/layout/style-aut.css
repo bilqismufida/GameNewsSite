@@ -272,9 +272,8 @@
             box-shadow: none;
         }
         
-        .modal-backdrop.show {
-            background-color: rgba(0, 0, 0, 1) !important;
-            z-index: 2;
+        .modal-overlay .show {
+            background-color: rgba(0, 0, 0, 0.46) !important;
         }
 
         .modal-content {
@@ -310,6 +309,22 @@
         }
         
 
+        .single-post-area .post-thumbnail {
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background-color: black; /* for the black bars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
+        .single-post-area .post-thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* ✨ key change here */
+            background-color: black;
+        }
         
         

@@ -46,18 +46,18 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 
                     <!-- Contact Form Area -->
                     <div class="contact-form-area mt-50">
-                        <form action="#" method="post">
+                        <form action="<?= url('contact-store') ?>" method="post">
                             <div class="form-group">
                                 <label for="name">Name*</label>
-                                <input type="text" class="form-control" id="name">
+                                <input name="name" type="text" class="form-control" id="name">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email*</label>
-                                <input type="email" class="form-control" id="email">
+                                <input name="email" type="email" class="form-control" id="email">
                             </div>
                             <div class="form-group">
                                 <label for="message">Message*</label>
-                                <textarea name="message" class="form-control" id="message" cols="30" rows="10"></textarea>
+                                <textarea name="message" name="message" class="form-control" id="message" cols="30" rows="10"></textarea>
                             </div>
                             <button class="btn vizew-btn mt-30" type="submit">Send Now</button>
                         </form>

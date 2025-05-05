@@ -180,7 +180,7 @@ class Auth
         $db->update('users', $id, array_keys($updateData), $updateData);
 
         flash('update_success', 'Update successful.');
-        $this->redirect('profile');
+        $this->redirectBack();
     }
 
     // Jika email atau data lain gagal, beri pesan error

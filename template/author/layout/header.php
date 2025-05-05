@@ -27,14 +27,14 @@ if (isset($_SESSION['user'])) {
     <title>Game News Website</title>
 
     <!-- Stylesheet -->
-    
+
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
-        <!-- Bootstrap CSS (already included, probably) -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-        <!-- Bootstrap JS Bundle (includes Popper) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- Bootstrap CSS (already included, probably) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
@@ -43,19 +43,47 @@ if (isset($_SESSION['user'])) {
     <!-- Quill for text area form -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2663004844.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="<?= asset('template/author/layout/style-aut.css') ?>">
 
     <style>
-        .vizew-breadcrumb .breadcrumb .breadcrumb-item li{
+        .vizew-breadcrumb .breadcrumb .breadcrumb-item li {
             color: #000;
             font-size: 16px;
-            font-weight: 400; }
+            font-weight: 400;
+        }
 
+        .single-post-area .post-thumbnail {
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            /* background-color: black; */
+            /* for the black bars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .single-post-area .post-thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* ✨ key change here */
+            background-color: black;
+        }
+
+        .modal-overlay .show {
+            background-color: rgba(0, 0, 0, 0.46) !important;
+        }
     </style>
 </head>
 
 <body>
+
+
     <header class="header-area text-decoration-none text-white bg-dark">
         <!-- Top Header Area -->
         <div class="top-header-area">
@@ -162,47 +190,50 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
 
+
     <!-- Edit Profile Modal -->
-    <div class="modal fade" id="editProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
+    <div class="modal-overlay">
+        <div class="modal fade" id="editProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2"
+            aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                    <button type="button" class="btn-close text-white" disabled aria-label="Close"></button>
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form method="post" action="<?= url('user/update/' . $user['id']) ?>">
+                            <div class="form-group mb-3">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    value="<?= $user['username'] ?>">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email"
+                                    value="<?= $user['email'] ?>">
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" id="password" name="password"
+                                    placeholder="Input your new password here">
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-outline-danger me-3"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn vizew-btn"
+                                    onclick="return confirm('Apakah anda yakin ingin mengubah data akun?');">Update</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form method="post" action="<?= url('user/update/' . $user['id']) ?>">
-                        <div class="form-group mb-3">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                value="<?= $user['username'] ?>">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                value="<?= $user['email'] ?>">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label for="password">Password</label>
-                            <input type="text" class="form-control" id="password" name="password"
-                                placeholder="Input your new password here">
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin ingin mengubah data akun?');">Update</button>
-                        </div>
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>
