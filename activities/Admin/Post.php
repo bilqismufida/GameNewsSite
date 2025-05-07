@@ -23,8 +23,8 @@ class Post extends Admin
 
     public function store($request)
     {
-        $realTimestamp = substr($request['published_at'], 0, 10);
-        $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
+        // $realTimestamp = substr($request['published_at'], 0, 10);
+        // $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
         $db = new DataBase();
         if ($request['cat_id'] != null) {
             $request['image'] = $this->saveImage($request['image'], 'post-image');
@@ -50,8 +50,8 @@ class Post extends Admin
 
     public function update($request, $id)
     {
-        $realTimestamp = substr($request['published_at'], 0, 10);
-        $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
+        // $realTimestamp = substr($request['published_at'], 0, 10);
+        // $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
         $db = new DataBase();
         if ($request['cat_id'] != null) {
             if ($request['image']['tmp_name'] != null) {

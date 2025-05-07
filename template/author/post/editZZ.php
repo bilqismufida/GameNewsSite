@@ -1,6 +1,6 @@
 <?php
 
-require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
+require_once(BASE_PATH . '/template/author/layout/header.php')
 
     ?>
 
@@ -13,7 +13,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 <section class="row my-3">
     <section class="col-12">
 
-        <form method="post" onsubmit="return syncQuill()" action="<?= url('admin/post/update/' . $post['id']) ?>"
+        <form method="post" onsubmit="return syncQuill()" action="<?= url('author/post/update/' . $post['id']) ?>"
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -31,8 +31,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
                         </option>
 
                     <?php } ?>
-
-
                 </select>
             </div>
 
@@ -40,11 +38,18 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
                 <label for="image">Image</label>
                 <input type="file" id="image" name="image" class="form-control-file" autofocus>
             </div>
-            <img src="<?= asset($post['image']) ?>" alt="">
             
+            <img src="<?= asset($post['image']) ?>" alt="">
+
+            <div class="form-group">
+                <label for="published_at">published at</label>
+                <input type="text" class="form-control d-none" id="published_at" name="published_at">
+                <input type="text" class="form-control" id="published_at_view" required autofocus>
+            </div>
+
             <div class="form-group">
                 <label for="summary">summary</label>
-                <textarea maxlength="290" class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required
+                <textarea class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required
                     autofocus><?= $post['summary'] ?></textarea>
             </div>
 
@@ -72,6 +77,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 
 <?php
 
-require_once(BASE_PATH . '/template/admin/layouts/footer.php')
+require_once(BASE_PATH . '/template/author/layout/footer.php')
 
     ?>

@@ -19,37 +19,19 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
-    <style>
-        .form-control {
-          position: relative;
-          z-index: 2;
-          height: 48px;
-          width: 100%;
-          background-color: #393c3d;
-          font-size: 12px;
-          margin-bottom: 15px;
-          padding: 10px 30px;
-          color: #ffffff;
-          -webkit-transition-duration: 500ms;
-          -o-transition-duration: 500ms;
-          transition-duration: 500ms;
-          border: none;
-          border-radius: 0;
-      }
-
-      .form-control:focus {
-          color: #ffffff;
-          box-shadow: none;
-          background-color: #393c3d;
-      }
-    </style>
 </head>
 
 <body>
-    <?php
-        require_once(BASE_PATH . '/template/app/layout/header.php');
-    ?>
-    <!-- ##### Header Area End ##### -->
+
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="vizew-breadcrumb">

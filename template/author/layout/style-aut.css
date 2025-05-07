@@ -1,85 +1,103 @@
-
-        /* Match Quill headings with Bootstrap styles */
-        .ql-editor h1 {
+.form-group .editor p{
+    color: #000;
+}
+.form-group .editor h1 {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        .ql-editor h2 {
+        .form-group .editor h2 {
             font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
-        .ql-editor h3 {
+        .form-group .editor h3 {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .ql-editor h4 {
+        .form-group .editor h4 {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .ql-editor h5 {
+        .form-group .editor h5 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .ql-editor h6 {
+        .form-group .editor h6 {
             font-size: 0.875rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         /* Optional spacing and base styles */
-        .ql-editor p {
+        .form-group .editor p {
             margin-bottom: 1rem;
             font-size: 1rem;
             line-height: 1.6;
         }
 
         /* List style */
-        .ql-editor ol {
+        .form-group .editor ol {
             padding-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .ql-editor ul {
+        .form-group .editor ul {
             padding-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .ql-editor li {
+        .form-group .editor li {
             margin-bottom: 0.5rem;
         }
 
         /* Strong, italic, underline */
-        .ql-editor strong,
-        .ql-editor b {
+        .form-group .editor strong,
+        .form-group .editor b {
             font-weight: bold !important;
         }
 
-        .ql-editor em,
-        .ql-editor i {
+        .form-group .editor em,
+        .form-group .editor i {
             font-style: italic !important;
         }
 
-        .ql-editor u {
+        .form-group .editor u {
             text-decoration: underline !important;
         }
 
         /* Optional image styling */
-        .ql-editor img {
+        .form-group .editor img {
             max-width: 100%;
             height: auto;
             border-radius: 0.25rem;
             margin: 1rem 0;
         }
+
+        .img-wrap {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: black;
+            overflow: hidden;
+          }
+          
+          .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* or use 'cover' if you want it to crop instead */
+            display: block;
+          }
+          
 
         .truncate-cell {
             max-width: 300px;
@@ -186,43 +204,6 @@
             display: block;
             margin: 10px 0;
         }
-
-        .form-control {
-            position: relative;
-            z-index: 2;
-            height: 48px;
-            width: 100%;
-            background-color: #393c3d;
-            font-size: 12px;
-            margin-bottom: 15px;
-            padding: 10px 30px;
-            color: #ffffff;
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            border: none;
-            border-radius: 0;
-        }
-
-        .form-control:focus {
-            box-shadow: none;
-            color: #ffffff;
-            background-color: #393c3d;
-        }
-
-        a,
-        a:hover,
-        a:focus {
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            text-decoration: none;
-            outline: 0 solid transparent;
-            color: #a6a6a6;
-            font-weight: 500;
-            font-size: 14px;
-            font-family: "Roboto", sans-serif;
-        }
         
         
         .custom-tabs .nav-link {
@@ -284,47 +265,4 @@
         .btn-close:disabled {
             pointer-events: none;
         }
-
-        .form-control {
-            position: relative;
-            z-index: 2;
-            height: 48px;
-            width: 100%;
-            background-color: #fff;
-            font-size: 12px;
-            margin-bottom: 15px;
-            padding: 10px 30px;
-            color: #393c3d;
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            border: 1px solid #393c3d;
-            border-radius: 0;
-        }
-
-        .form-control:focus {
-            /* box-shadow: none; */
-            color: #ffffff;
-            background-color: #393c3d;
-        }
-        
-
-        .single-post-area .post-thumbnail {
-            position: relative;
-            z-index: 1;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background-color: black; /* for the black bars */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .single-post-area .post-thumbnail img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* ✨ key change here */
-            background-color: black;
-        }
-        
         

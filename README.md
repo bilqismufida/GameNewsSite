@@ -119,3 +119,7 @@ edit detail post page (image)
 
 ## Deleted Features
 > Mega Menu [navbar]
+
+## COLOR
+> Dark: #393c3d
+> Light: #a6a6a6

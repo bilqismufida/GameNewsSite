@@ -2,17 +2,6 @@
 
 <div class="col-12 col-md-5 col-lg-4">
     <div class="sidebar-area">
-
-        <!-- ***** Single Widget ***** -->
-        <!-- <div class="single-widget followers-widget mb-50">
-            <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span
-                    class="counter">198</span><span>Fan</span></a>
-            <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span
-                    class="counter">220</span><span>Followers</span></a>
-            <a href="#" class="google"><i class="fa fa-google" aria-hidden="true"></i><span
-                    class="counter">140</span><span>Subscribe</span></a>
-        </div> -->
-
         <!-- ***** Single Widget ***** -->
         <div class="single-widget latest-video-widget mb-50">
             <!-- Section Heading -->
@@ -44,8 +33,14 @@
                             <a href="#" class="post-date"><?= $topSelectedPost['created_at'] ?></a>
                         </div>
                         <div class="post-meta d-flex">
-                            <a href="#"><i class="fa fa-comments-o"
-                                    aria-hidden="true"></i><?= $topSelectedPost['comments_count'] ?></a>
+                            <a href="#">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                <?= $topSelectedPost['comments_count'] ?>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <?= $topSelectedPost['view'] ?>
+                            </a>
                         </div>
                     </div>
                 </div>

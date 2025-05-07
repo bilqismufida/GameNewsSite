@@ -11,8 +11,8 @@
         </div>
 
         <div class="row">
-            
-            <?php foreach ($popularPosts as $popularPost)  { ?>
+
+            <?php foreach ($popularPosts as $popularPost) { ?>
                 <!-- Single Blog Post -->
                 <div class="col-12 col-md-4">
                     <div class="single-post-area mb-80">
@@ -30,16 +30,17 @@
                             <a href="<?= url('show-post/' . $popularPost['id']) ?>" class="post-title mb-2">
                                 <?= $popularPost['title'] ?>
                             </a>
-                            <div class="post-meta d-flex align-items-center mb-2">
-                                <a href="#" class="post-author"><?= $popularPost['username'] ?></a>
-                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                <a href="#" class="post-date"><?= $popularPost['created_at'] ?></a>
-                            </div>
-                            <div class="post-meta d-flex">
-                                <a href="#"><i class="fa fa-comments-o"
-                                        aria-hidden="true"></i><?= $popularPost['comments_count'] ?></a>
-                                <a href="#"><i class="fa fa-eye"
-                                        aria-hidden="true"></i><?= $popularPost['view'] ?></a>
+                            <div class="mt-auto">
+                                <div class="post-meta d-flex align-items-center mb-2">
+                                    <a href="#" class="post-author"><?= $popularPost['username'] ?></a>
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                    <a href="#" class="post-date"><?= $popularPost['created_at'] ?></a>
+                                </div>
+                                <div class="post-meta d-flex">
+                                    <a href="#"><i class="fa fa-comments-o"
+                                            aria-hidden="true"></i><?= $popularPost['comments_count'] ?></a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i><?= $popularPost['view'] ?></a>
+                                </div>
                             </div>
                         </div>
                     </div>

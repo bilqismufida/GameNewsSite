@@ -16,8 +16,9 @@ if (isset($_SESSION['user'])) {
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.jpeg') ?>" />
-    <!-- Meta Description -->
+    <!-- <link rel="icon" type="image/png" href="icon.png" /> -->
+    <link rel="shortcut icon" type="x-icon" href="<?= asset($setting['icon']) ?>">
+
     <meta name="description" content="Game News Website">
     <!-- Meta Keyword -->
     <meta name="keywords" content="Game News Website">
@@ -25,157 +26,69 @@ if (isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <!-- Site Title -->
     <title>Game News Website</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+
     <!-- Stylesheet -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
-
     <style>
-        .single-post-area .post-thumbnail {
-    position: relative;
-    z-index: 1;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background-color: black; /* for the black bars */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.single-post-area .post-thumbnail img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* ✨ key change here */
-    background-color: black;
-}
-
-        /* Existing .video-duration styling stays the same */
-        .single-post-area .post-thumbnail .video-duration {
-            display: inline-block;
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            background-color: #0f1112;
-            padding: 6px 10px;
-            border-radius: 2px;
-            font-size: 14px;
-            color: #ffffff;
-            line-height: 1;
-            z-index: 79;
+        .modal-overlay .show {
+            background-color: rgba(0, 0, 0, 0.46) !important;
         }
 
-        /* Semi-transparent background overlay */
-        .overlay-background {
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            z-index: 1999;
-            top: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Semi-transparent black */
-            display: none;
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        /* Profile Overlay */
-        .overlay {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            right: 0;
-            background-color: #212121;
-            /* Solid color for the sidebar */
-            overflow-x: hidden;
-            transition: 0.4s;
-            padding-top: 60px;
-        }
-
-        .overlay-content {
-            position: relative;
-            top: 10%;
-            width: 80%;
-            margin: auto;
-            text-align: center;
-            color: white;
-        }
-
-        .overlay .closebtn {
-            position: absolute;
-            top: 20px;
-            right: 45px;
-            font-size: 40px;
-            cursor: pointer;
-            color: #ffffff;
-        }
-
-        .profile-info h3 {
-            margin-top: 20px;
-        }
-
-        .profile-info a {
-            display: block;
-            margin: 10px 0;
-        }
-
-        .form-control {
-            position: relative;
-            z-index: 2;
-            height: 48px;
-            width: 100%;
-            background-color: #393c3d;
-            font-size: 12px;
-            margin-bottom: 15px;
-            padding: 10px 30px;
-            color: #ffffff;
-            -webkit-transition-duration: 500ms;
-            -o-transition-duration: 500ms;
-            transition-duration: 500ms;
-            border: none;
-            border-radius: 0;
-        }
-
-        .form-control:focus {
-            box-shadow: none;
-            color: #ffffff;
-            background-color: #393c3d;
+        .btn-close:disabled {
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
+
     <header class="header-area">
         <!-- Top Header Area -->
         <div class="top-header-area">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-12 col-md-6"></div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-md-12">
                         <div class="top-meta-data d-flex align-items-center justify-content-end">
                             <!-- Top Social Info -->
                             <div class="top-social-info">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-github"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-youtube-play"></i></a>
                             </div>
                             <!-- Top Search Area -->
                             <div class="top-search-area">
-                                <form action="index.php" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search...">
-                                    <button type="submit" class="btn"><i class="fa fa-search"
-                                            aria-hidden="true"></i></button>
+                                <form action="<?= url('search') ?>" method="GET">
+                                    <input type="text" name="q" placeholder="Cari berita..." required>
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
+
                             </div>
                             <!-- Login -->
                             <?php if (isset($_SESSION['user'])): ?>
-                                <a class="login-btn" href="javascript:void(0)" onclick="openProfileMenu()">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span style="font-size:15px;"> Profile</span>
-                                </a>
+                                <div class="profile-wrapper">
+                                    <div class="profile-toggle">
+                                        <i class="fa fa-user-circle"></i> <!-- Bisa tambahin nama user juga -->
+                                    </div>
+                                    <div class="profile-dropdown">
+                                        <a href="<?= url('profile') ?>" class="dropdown-item">Profile</a>
+                                        <a href="<?= url('logout') ?>" class="dropdown-item">Logout</a>
+                                    </div>
+                                </div>
+
 
                             <?php else: ?>
-                                <a class="btn btn-primary" href="<?= url('login') ?>">
+                                <a class="login-btn" href="<?= url('login') ?>">
                                     <span class="lnr lnr-enter-down"></span>
                                     <span style="font-size:15px;"> Login</span>
                                 </a>
@@ -191,7 +104,6 @@ if (isset($_SESSION['user'])) {
         <div class="vizew-main-menu" id="sticker">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-
                     <!-- Menu -->
                     <nav class="classy-navbar justify-content-between" id="vizewNav">
 
@@ -200,6 +112,7 @@ if (isset($_SESSION['user'])) {
                         <a href="http://localhost/GameNewsSite/home">
                             <img class="nav-brand" src="<?= asset($setting['icon']) ?>" alt="">
                         </a>
+
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -226,6 +139,7 @@ if (isset($_SESSION['user'])) {
                                             <?php } ?>
                                         </ul>
                                     </li>
+                                    <li><a href="<?= url('about-us') ?> ">About Us</a></li>
                                     <li><a href="<?= url('contact') ?> ">Contact</a></li>
                                 </ul>
                             </div>
@@ -238,24 +152,3 @@ if (isset($_SESSION['user'])) {
     </header>
     <!-- Semi-transparent background overlay -->
     <div id="overlayBackground" class="overlay-background" onclick="closeProfileMenu()"></div>
-
-    <!-- Profile Overlay -->
-    <div id="profileOverlay" class="overlay">
-        <div class="overlay-content">
-            <!-- <span class="closebtn" onclick="closeProfileMenu()">&times;</span> -->
-            <?php if (isset($_SESSION['user'])): ?>
-                <div class="profile-info">
-                    <i class="fa fa-user-circle" style="font-size: 60px;"></i>
-                    <h3><?= htmlspecialchars($user['username']) ?></h3>
-                    <h5><?= htmlspecialchars($user['email']) ?></h5>
-                    <a href="<?= url('profile') ?>" class="btn btn-primary" style="margin-top: 10px;">Go to Profile</a>
-                    <a href="<?= url('logout') ?>" class="btn btn-danger" style="margin-top: 10px;">Logout</a>
-                </div>
-            <?php else: ?>
-                <div class="profile-info">
-                    <h3>Welcome, Guest!</h3>
-                    <a href="<?= url('login') ?>" class="btn btn-primary" style="margin-top: 10px;">Login</a>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>

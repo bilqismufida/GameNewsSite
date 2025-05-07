@@ -28,7 +28,6 @@ require_once 'activities/Admin/Admin.php';
 require_once 'activities/Admin/Category.php';
 require_once 'activities/Admin/Dashboard.php';
 require_once 'activities/Admin/Post.php';
-require_once 'activities/Admin/Banner.php';
 require_once 'activities/Admin/User.php';
 require_once 'activities/Admin/Comment.php';
 require_once 'activities/Admin/Menu.php';
@@ -237,14 +236,6 @@ uri('admin/post/delete/{id}', 'Admin\Post', 'delete');
 uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
  
-// banners
-uri('admin/banner', 'Admin\Banner', 'index');
-uri('admin/banner/create', 'Admin\Banner', 'create');
-uri('admin/banner/store', 'Admin\Banner', 'store', 'POST');
-uri('admin/banner/edit/{id}', 'Admin\Banner', 'edit');
-uri('admin/banner/update/{id}', 'Admin\Banner', 'update', 'POST');
-uri('admin/banner/delete/{id}', 'Admin\Banner', 'delete');
-
 // users
 uri('admin/user', 'Admin\User', 'index');
 uri('admin/user/edit/{id}', 'Admin\User', 'edit');
@@ -298,20 +289,23 @@ if (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'user') {
 
 }
 
-
 uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');
 uri('comment-store', 'App\Home', 'commentStore', 'POST');
 uri('profile', 'App\Home', 'profile');
 uri('most-view', 'App\Home', 'mostViewed');
+uri('about-us', 'App\Home', 'aboutUs');
 uri('contact', 'App\Home', 'contact');
 uri('contact-store', 'App\Home', 'contactStore', 'POST');
+uri('user-delete/{id}', 'App\Home', 'delete');
+uri('search', 'App\Home', 'search', 'GET');
+uri('author-search', 'App\Author', 'search', 'GET');
+
 
 //Author
 uri('author', 'App\Author', 'index');
 
-uri('author/post', 'App\Author', 'indexPost');
 uri('author/post/create', 'App\Author', 'create');
 uri('author/post/store', 'App\Author', 'store', "POST");
 uri('author/post/edit/{id}', 'App\Author', 'edit');

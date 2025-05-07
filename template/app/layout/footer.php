@@ -1,8 +1,11 @@
-<?php
-require_once(BASE_PATH . '/template/app/layout/script.php');
-?>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="<?= asset('public/app-layout/js/jquery/jquery-2.2.4.min.js') ?>"></script>
+<script src="<?= asset('public/app-layout/js/bootstrap/popper.min.js') ?>"></script>
+<script src="<?= asset('public/app-layout/js/bootstrap/bootstrap.min.js') ?>"></script>
+<script src="<?= asset('public/app-layout/js/plugins/plugins.js') ?>"></script>
+<script src="<?= asset('public/app-layout/js/active.js') ?>"></script>
 
 <footer class="footer-area">
     <div class="container">
@@ -13,7 +16,8 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
             <div class="col-12 col-sm-6 col-xl-3">
                 <div class="footer-widget mb-70">
                     <!-- Logo -->
-                    <a href="index.php" class="foo-logo d-block mb-4"><img src="<?= asset('public/setting/icon.jpeg')?>" alt="logo"></a>
+                    <a href="<?= url('/')?>" class="foo-logo d-block mb-4"><img
+                            src="<?= asset('public/setting/icon.jpeg') ?>" alt="logo"></a>
                     <!-- Footer Newsletter Area -->
                     <div class="footer-nl-area">
                         <form action="#" method="post">
@@ -27,13 +31,13 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-xl-3">
-                <div class="footer-widget mb-70">
+                <div class="footer-widget mb-70 text-white">
                     <h6 class="widget-title">Our Address</h6>
                     <!-- Contact Address -->
                     <div class="contact-address">
-                        <p>101 E 129th St, East Chicago, <br>IN 46312, US</p>
-                        <p>Phone: 001-1234-88888</p>
-                        <p>Email: info.colorlib@gmail.com</p>
+                        <p>Jl. Bhakti Suci No.100, Cimpaeun, Kec. Tapos, Kota Depok<br>Jawa Barat 16459</p>
+                        <p>Phone: (021) 879072338</p>
+                        <p>Email: gamenewssite@gmail.com</p>
                     </div>
                     <!-- Footer Social Area -->
                     <div class="footer-social-area">
@@ -46,66 +50,55 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Copywrite Area -->
-    <div class="copywrite-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Copywrite Text -->
-                <div class="col-12 col-sm-6">
-                    <p class="copywrite-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-                        is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <nav class="footer-nav">
-                        <ul>
-                            <li><a href="#">Advertise</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Disclaimer</a></li>
-                            <li><a href="#">Privacy</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> 
 </footer>
-
-
 <!-- ##### Footer Area End ##### -->
 
+
 <!-- ##### All Javascript Script ##### -->
+<!-- Bootstrap 5 JS + Popper -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
 <script>
-function openProfileMenu() {
-    document.getElementById("profileOverlay").style.width = "30%";
-    document.getElementById("overlayBackground").style.display = "block";
-}
-
-function closeProfileMenu() {
-    document.getElementById("profileOverlay").style.width = "0";
-    document.getElementById("overlayBackground").style.display = "none";
-}
-
-// Close the overlay when clicking outside of it
-document.addEventListener('click', function(event) {
-    var overlay = document.getElementById('profileOverlay');
-    var background = document.getElementById('overlayBackground');
-    
-    // Check if the click was outside the overlay content and the overlay is open
-    if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') && 
-        !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
-        closeProfileMenu();
+    function toggleProfileDropdown() {
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.classList.toggle("show");
     }
-});</script>
+
+    document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdown");
+        const toggle = document.querySelector(".profile-toggle");
+
+        if (!dropdown.contains(event.target) && !toggle.contains(event.target)) {
+            dropdown.classList.remove("show");
+        }
+    });
+</script>
+
+<script>
+    function openProfileMenu() {
+        document.getElementById("profileOverlay").style.width = "30%";
+        document.getElementById("overlayBackground").style.display = "block";
+    }
+
+    function closeProfileMenu() {
+        document.getElementById("profileOverlay").style.width = "0";
+        document.getElementById("overlayBackground").style.display = "none";
+    }
+
+    // Close the overlay when clicking outside of it
+    document.addEventListener('click', function (event) {
+        var overlay = document.getElementById('profileOverlay');
+        var background = document.getElementById('overlayBackground');
+
+        // Check if the click was outside the overlay content and the overlay is open
+        if (overlay.style.width !== "0px" && !event.target.closest('.overlay-content') &&
+            !event.target.closest('.profile-toggle') && event.target.id === 'overlayBackground') {
+            closeProfileMenu();
+        }
+    });
+</script>
+
 
 </body>
 

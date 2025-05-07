@@ -41,7 +41,7 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                 <div class="tab-pane fade show active" id="posts" role="tabpanel"
                                     aria-labelledby="posts-tab">
                                     <?php foreach ($posts as $post) { ?>
-                                        <div class="single-post-area mb-4">
+                                        <div class="single-post-area mb-50">
                                             <div class="row align-items-center">
                                                 <div class="col-md-4">
                                                     <div class="post-thumbnail">
@@ -51,10 +51,13 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="post-content mt-0">
-                                                        <a href="<?= url('show-category/' . $post['cat_id']) ?>"
-                                                            class="post-cata cata-sm cata-danger">
-                                                            <?= $post['category'] ?>
-                                                        </a>
+                                                        <div class="col-md-12 d-flex justify-content-between">
+                                                            <a href="<?= url('show-category/' . $post['cat_id']) ?>"
+                                                                class="post-cata cata-sm cata-danger">
+                                                                <?= $post['category'] ?>
+                                                            </a>
+                                                            <a href="<?=url('author/post/edit/' . $post['id'])?>" class="btn btn-md btn-outline-warning">edit</a>
+                                                        </div>
                                                         <a href="<?= url('show-post/' . $post['id']) ?>"
                                                             class="post-title mb-2 d-block">
                                                             <?= $post['title'] ?>

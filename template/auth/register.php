@@ -17,18 +17,29 @@
     <!-- Site Title -->
     <title>Game News Website</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<?= asset('public/app-layout/style.css') ?>">
 </head>
 
 <body>
+
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
     <!-- Top Header Area -->
     <header class="header-area">
         <div class="top-header-area">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        
+
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="top-meta-data d-flex align-items-center justify-content-end">
@@ -89,8 +100,6 @@
             </div>
         </div>
     </header>
-
-
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcrumb Area Start ##### -->
@@ -120,7 +129,7 @@
                     <div class="login-content">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h4>Great to have you back!</h4>
+                            <h4>Ayo Bergabung dengan Kami!</h4>
                             <div class="line"></div>
                         </div>
 
@@ -167,6 +176,20 @@
                             </div>
                             <button type="submit" class="btn vizew-btn w-100 mt-30">Register</button>
                         </form>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-md-5 col-lg-4">
+                    <div class="sidebar-area">
+                        <!-- ***** Single Widget ***** -->
+                        <div class="single-widget latest-video-widget mb-50">
+                            <!-- Section Heading -->
+                            <div class="section-heading style-2 mb-30">
+                                <h4>Tertarik Bergabung dengan Kami?</h4>
+                                .btn
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
             <div class="col-12 col-sm-6 col-xl-3">
                 <div class="footer-widget mb-70">
                     <!-- Logo -->
-                    <a href="index.php" class="foo-logo d-block mb-4"><img
+                    <a href="<?= url('/')?>" class="foo-logo d-block mb-4"><img
                             src="<?= asset('public/setting/icon.jpeg') ?>" alt="logo"></a>
                     <!-- Footer Newsletter Area -->
                     <div class="footer-nl-area">
@@ -34,13 +34,13 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-xl-3">
-                <div class="footer-widget mb-70">
+                <div class="footer-widget mb-70 text-white">
                     <h6 class="widget-title">Our Address</h6>
                     <!-- Contact Address -->
                     <div class="contact-address">
-                        <p>101 E 129th St, East Chicago, <br>IN 46312, US</p>
-                        <p>Phone: 001-1234-88888</p>
-                        <p>Email: info.colorlib@gmail.com</p>
+                        <p>Jl. Bhakti Suci No.100, Cimpaeun, Kec. Tapos, Kota Depok<br>Jawa Barat 16459</p>
+                        <p>Phone: (021) 879072338</p>
+                        <p>Email: gamenewssite@gmail.com</p>
                     </div>
                     <!-- Footer Social Area -->
                     <div class="footer-social-area">
@@ -53,37 +53,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Copywrite Area -->
-    <div class="copywrite-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Copywrite Text -->
-                <div class="col-12 col-sm-6">
-                    <p class="copywrite-text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-                        is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <nav class="footer-nav">
-                        <ul>
-                            <li><a href="#">Advertise</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Disclaimer</a></li>
-                            <li><a href="#">Privacy</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> 
 </footer>
 
 <!-- Quill for text area form -->
@@ -110,7 +80,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 <!-- ##### Footer Area End ##### -->
 
 <!-- ##### All Javascript Script ##### -->
-
+<!-- ## PROFILE MODAL ## -->
 <script>
     function openProfileMenu() {
         document.getElementById("profileOverlay").style.width = "30%";
@@ -134,6 +104,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
         }
     });
 </script>
+
 </body>
 
 </html>

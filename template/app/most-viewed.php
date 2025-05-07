@@ -1,13 +1,13 @@
 <!-- Preloader -->
 <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
-    
+</div>
+
 <!-- ##### Header Area Start ##### -->
 <?php
 
@@ -22,7 +22,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li class="breadcrumb-item"><a href="<?=url('/')?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Most Viewed News</li>
                     </ol>
@@ -37,17 +37,14 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 <div class="vizew-grid-posts-area mb-80">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-md-7  col-lg-8">
                 <!-- Archive Catagory & View Options -->
-                <div class="archive-catagory-view mb-50 d-flex align-items-center justify-content-between">
-                    <!-- Catagory -->
-                    <div class="archive-catagory">
+                <div class="section-heading style-2">
                         <h4>Most Viewed News</h4>
                         <div class="line"></div>
                     </div>
-                </div>
                 <div class="row">
-                <?php foreach ($popularPosts as $popularPost) { ?>
+                    <?php foreach ($popularPosts as $popularPost) { ?>
                         <div class="single-post-area mb-30">
                             <div class="row align-items-center">
                                 <div class="col-12 col-lg-6">

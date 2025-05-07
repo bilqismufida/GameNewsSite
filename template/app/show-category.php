@@ -22,7 +22,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li class="breadcrumb-item"><a href="<?=url('/')?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $category['name'] ?> News</li>
                     </ol>
@@ -33,15 +33,15 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
 </div>
 <!-- ##### Breadcrumb Area End ##### -->
 
-<!-- ##### Archive Grid Posts Area Start ##### -->
+<!-- ##### Show category Area Start ##### -->
 <div class="vizew-grid-posts-area mb-80">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
+        <div class="row ">
+            <div class="col-12 col-md-7 col-lg-8">
                 <!-- Archive Catagory & View Options -->
-                <div class="archive-catagory-view mb-50 d-flex align-items-center justify-content-between">
+                <div class="archive-catagory-view ">
                     <!-- Catagory -->
-                    <div class="archive-catagory">
+                    <div class="section-heading style-2">
                         <h4><?= $category['name'] ?> News</h4>
                         <div class="line"></div>
                     </div>
@@ -82,7 +82,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                <?php } ?>
                 </div>
             </div>
 
@@ -92,8 +92,9 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
         </div>
     </div>
 </div>
+<!-- ##### Show category Area End ##### -->
 
-<!-- ##### Archive Grid Posts Area End ##### -->
+
 <?php
 require_once(BASE_PATH . '/template/app/layout/footer.php');
 ?>

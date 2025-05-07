@@ -6,7 +6,20 @@ use Database\DataBase;
 
 class Author
 {
-
+        protected $currentDomain;
+        protected $basePath;
+            function __construct(){
+                    $this->currentDomain = CURRENT_DOMAIN;
+                    $this->basePath = BASE_PATH;
+            }
+    
+    
+            public function redirect($url){
+    
+                    header("Location: ". trim($this->currentDomain, '/ ') . '/' . trim($url, '/ '));
+                    exit;
+    
+            }
         protected function redirectBack()
         {
                 header("Location: " . $_SERVER['HTTP_REFERER']);
@@ -67,10 +80,6 @@ class Author
         }
 
         //IMAGE
-
-
-
-
         protected function saveImage($image, $imagePath, $imageName = null)
         {
 
@@ -108,24 +117,6 @@ class Author
         }
 
         // POST
-        public function indexPost()
-        {
-                $db = new DataBase();
-                
-
-                $posts = $db->select(
-                        "SELECT posts.*, 
-                                categories.name AS category, 
-                                (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count
-                        FROM posts
-                        JOIN categories ON posts.cat_id = categories.id
-                        WHERE posts.user_id = ?",
-                        [$_SESSION['user']]
-                );
-                // $commentsCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `user_id` = ?", [$_SESSION['user']])->fetch();
-
-                require_once BASE_PATH . '/template/author/post/index.php';
-        }
         public function create()
         {
                 $db = new DataBase();
@@ -135,20 +126,20 @@ class Author
 
         public function store($request)
         {
-                $realTimestamp = substr($request['published_at'], 0, 10);
-                $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
+                // $realTimestamp = substr($request['published_at'], 0, 10);
+                // $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
                 $db = new DataBase();
                 if ($request['cat_id'] != null) {
                         $request['image'] = $this->saveImage($request['image'], 'post-image');
                         if ($request['image']) {
                                 $request = array_merge($request, ['user_id' => $_SESSION['user']]);
                                 $posts = $db->insert('posts', array_keys($request), $request);
-                                require_once BASE_PATH . '/template/author/index.php';
+                                $this->redirect('author');
                         } else {
-                                require_once BASE_PATH . '/template/author/index.php';
+                                $this->redirect('author');
                         }
                 } else {
-                        require_once BASE_PATH . '/template/author/index.php';
+                        $this->redirect('author');
                 }
         }
 
@@ -162,8 +153,8 @@ class Author
 
         public function update($request, $id)
         {
-                $realTimestamp = substr($request['published_at'], 0, 10);
-                $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
+                // $realTimestamp = substr($request['published_at'], 0, 10);
+                // $request['published_at'] = date("Y-m-d H:i:s", (int) $realTimestamp);
                 $db = new DataBase();
                 if ($request['cat_id'] != null) {
                         if ($request['image']['tmp_name'] != null) {
@@ -173,9 +164,9 @@ class Author
                         } else {
                                 unset($request['image']);
                         }
-                        $request = array_merge($request, ['user_id' => 1]);
+                        // $request = array_merge($request, ['user_id' => 1]);
                         $db->update('posts', $id, array_keys($request), $request);
-                        require_once BASE_PATH . '/template/author/post/index.php';
+                        $this->redirect('author');
                 }
 
         }
@@ -187,6 +178,37 @@ class Author
                 $this->removeImage($post['image']);
                 $db->delete('posts', $id);
                 $this->redirectBack();
+        }
+
+        //SEARCH
+        public function search()
+        {
+                $db = new DataBase();
+                $keyword = isset($_GET['q']) ? trim($_GET['q']) : '';
+
+                if (empty($keyword)) {
+                        header("Location: " . url('/'));
+                        exit;
+                }
+
+                $results = $db->select('
+                        SELECT posts.*,
+                        (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, 
+                        (SELECT username FROM users WHERE users.id = posts.user_id) AS username,
+                        (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category 
+                        FROM posts 
+                        WHERE (title LIKE ? OR body LIKE ?) AND posts.user_id = ? 
+                        ORDER BY created_at DESC
+                ', ["%$keyword%", "%$keyword%", $_SESSION['user']])->fetchAll();
+
+                $setting = $db->select('SELECT * FROM websetting')->fetch();
+                $categories = $db->select("SELECT * FROM categories")->fetchAll();
+                $postCount = $db->select("SELECT COUNT(*) FROM `posts` WHERE `user_id` = ?", [$_SESSION['user']])->fetch();
+                $postsViews = $db->select("SELECT SUM(view) FROM `posts` WHERE `user_id` = ?", [$_SESSION['user']])->fetch();
+                $commentsCount = $db->select('SELECT COUNT(*) FROM `comments`  ;')->fetch();
+                $commentsCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `user_id` = ?", [$_SESSION['user']])->fetch();
+                
+                require_once(BASE_PATH . '/template/author/search-result.php');
         }
 
         public function breakingNews($id)
