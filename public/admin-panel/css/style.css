@@ -28,18 +28,18 @@
     font-size: 15px;
     /*color: rgb(0,168,249);*/
     color: rgb(255,255,255);
-}
+} 
 .bg-sidebar>a>i{
-    color: rgb(0,168,249);
+    color: #dc3545;
     /*color: rgb(255,255,255);*/
 }
 .bg-sidebar a:hover{
-    border-left: 3px solid rgb(0, 89, 249);
+    border-left: 3px solid #a8787d;
     color: #ffffff;
     text-shadow:
             0 0 2px rgb(255,255,255),
-            0 0 5px rgb(150,205,253),
-            0 0 10px rgb(0,168,249);
+            0 0 5px #dc3545,
+            0 0 10px #dc3545;
     transition: all 0.3s;
     transition: all 0.3s;
 }

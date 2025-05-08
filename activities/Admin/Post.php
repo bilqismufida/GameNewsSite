@@ -11,6 +11,10 @@ class Post extends Admin
     {
         $db = new DataBase();
         $posts = $db->select("SELECT * FROM posts");
+        $unseenPost = $db->select('SELECT * FROM posts WHERE post_status = ?', ['unseen']);
+        foreach ($unseenPost as $post) {
+            $db->update('posts', $post['id'], ['post_status'], ['seen']);
+        }
         require_once BASE_PATH . '/template/admin/post/index.php';
     }
 
@@ -30,7 +34,7 @@ class Post extends Admin
             $request['image'] = $this->saveImage($request['image'], 'post-image');
             if ($request['image']) {
                 $request = array_merge($request, ['user_id' => 1]);
-               $posts = $db->insert('posts', array_keys($request), $request);
+                $posts = $db->insert('posts', array_keys($request), $request);
                 $this->redirect('admin/post');
             } else {
                 $this->redirect('admin/post');
@@ -105,6 +109,21 @@ class Post extends Admin
             $db->update('posts', $id, ['selected'], [2]);
         } else {
             $db->update('posts', $id, ['selected'], [1]);
+        }
+        $this->redirectBack();
+    }
+
+    public function changeStatus($id)
+    {
+        $db = new DataBase();
+        $posts = $db->select('SELECT * FROM posts WHERE id = ?;', [$id])->fetch();
+        if (empty($posts)) {
+            $this->redirectBack();
+        }
+        if ($posts['post_status'] == 'seen') {
+            $db->update('posts', $id, ['post_status'], ['approved']);
+        } else {
+            $db->update('posts', $id, ['post_status'], ['seen']);
         }
         $this->redirectBack();
     }

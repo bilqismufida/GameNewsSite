@@ -40,7 +40,7 @@
                 </td>
                 <td>
                 <?= $comment['status'] ?>
-                </td>
+                </td> 
                 <td>
                     <?php if ($comment['status'] == 'seen') { ?>
                     <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click to approved</a>

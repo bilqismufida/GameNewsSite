@@ -115,7 +115,7 @@ class Author
                 }
 
         }
-
+ 
         // POST
         public function create()
         {
@@ -134,6 +134,7 @@ class Author
                         if ($request['image']) {
                                 $request = array_merge($request, ['user_id' => $_SESSION['user']]);
                                 $posts = $db->insert('posts', array_keys($request), $request);
+                                flash('after-post', 'Postingan anda akan ditahan hingga di<i>approve</i> oleh admin.');
                                 $this->redirect('author');
                         } else {
                                 $this->redirect('author');

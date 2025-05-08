@@ -110,7 +110,7 @@
 
 <body>
 
-    <nav class="navbar  navbar-light bg-gradiant-green-blue nav-shadow">
+    <nav class="navbar  navbar-light bg-danger nav-shadow">
 
         <a class="navbar-brand" href=""></a>
         <span class="">

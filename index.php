@@ -235,7 +235,9 @@ uri('admin/post/update/{id}', 'Admin\Post', 'update', "POST");
 uri('admin/post/delete/{id}', 'Admin\Post', 'delete');
 uri('admin/post/breaking-news/{id}', 'Admin\Post', 'breakingNews');
 uri('admin/post/selected/{id}', 'Admin\Post', 'selected');
- 
+uri('admin/post/change-status/{id}', 'Admin\Post', 'changeStatus');
+
+
 // users
 uri('admin/user', 'Admin\User', 'index');
 uri('admin/user/edit/{id}', 'Admin\User', 'edit');

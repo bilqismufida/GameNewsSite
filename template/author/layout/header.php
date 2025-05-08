@@ -86,7 +86,7 @@ if (isset($_SESSION['user'])) {
                         <!-- Nav brand -->
                         <!-- <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a> -->
                         <a href="<?= url('author') ?>">
-                            <img class="nav-brand" src="<?= asset('public/setting/icon.jpeg') ?>" alt="">
+                            <img class="nav-brand" src="<?= asset('public/setting/icon.png') ?>" alt="">
                         </a>
 
                         <div class="classy-menu">

@@ -37,6 +37,9 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
 
                             <!-- Tabs Content -->
                             <div class="tab-content pt-3" id="postCommentTabContent">
+                                <?php
+                                $message = flash('after-post');
+                                ?>
                                 <!-- Posts Tab -->
                                 <div class="tab-pane fade show active" id="posts" role="tabpanel"
                                     aria-labelledby="posts-tab">
@@ -52,11 +55,18 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                                 <div class="col-md-8">
                                                     <div class="post-content mt-0">
                                                         <div class="col-md-12 d-flex justify-content-between">
-                                                            <a href="<?= url('show-category/' . $post['cat_id']) ?>"
-                                                                class="post-cata cata-sm cata-danger">
-                                                                <?= $post['category'] ?>
-                                                            </a>
-                                                            <a href="<?=url('author/post/edit/' . $post['id'])?>" class="btn btn-md btn-outline-warning">edit</a>
+                                                            <div class="d-flex gap-3">
+                                                                <a href="<?= url('show-category/' . $post['cat_id']) ?>"
+                                                                    class="post-cata cata-sm cata-danger me-3">
+                                                                    <?= $post['category'] ?>
+                                                                </a>
+                                                                <a href="#"
+                                                                    class="post-outline-cata cata-sm cata-outline-danger ms-3">
+                                                                    <?= $post['post_status'] ?>
+                                                                </a>
+                                                            </div>
+                                                            <a href="<?= url('author/post/edit/' . $post['id']) ?>"
+                                                                class="btn btn-md btn-outline-warning">edit</a>
                                                         </div>
                                                         <a href="<?= url('show-post/' . $post['id']) ?>"
                                                             class="post-title mb-2 d-block">
@@ -119,11 +129,11 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
 
                 </div>
 
-                
+
             </div>
             <?php
-                require_once(BASE_PATH . "/template/author/layout/sidebar.php");
-                ?>
+            require_once(BASE_PATH . "/template/author/layout/sidebar.php");
+            ?>
         </div>
     </div>
 </section>

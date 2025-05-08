@@ -7,7 +7,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.jpeg') ?>" />
+    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.png') ?>" />
     <!-- Meta Description -->
     <meta name="description" content="Game News Website">
     <!-- Meta Keyword -->

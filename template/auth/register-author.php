@@ -7,7 +7,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.jpeg') ?>" />
+    <link rel="icon" type="image/png" href="<?= asset('public/setting/icon.png') ?>" />
     <!-- Meta Description -->
     <meta name="description" content="Game News Website">
     <!-- Meta Keyword -->
@@ -65,7 +65,7 @@
                         <!-- Nav brand -->
                         <!-- <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a> -->
                         <a href="http://localhost/GameNewsSite/home">
-                            <img class="nav-brand" src="<?= asset('public/setting/icon.jpeg') ?>" alt="Icon Brand">
+                            <img class="nav-brand" src="<?= asset('public/setting/icon.png') ?>" alt="Icon Brand">
                         </a>
 
                         <!-- Navbar Toggler -->

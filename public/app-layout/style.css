@@ -957,6 +957,7 @@ input:focus {
     line-height: 1;
     z-index: 79; }
 
+    
 .post-cata {
   background-color: #db4437;
   padding: 8px 15px 6px;
@@ -983,6 +984,19 @@ input:focus {
     .post-cata.cata-sm:hover, .post-cata.cata-sm:focus {
       background-color: #000;
       font-size: 10px; }
+      .post-outline-cata.cata-outline-danger {
+        margin-left: 1rem ;
+        border: 1px solid #db4437; 
+        padding: 8px 15px 6px;
+        border-radius: 2px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #db4437;
+        line-height: 1;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
 
 .single-post-area {
   position: relative;

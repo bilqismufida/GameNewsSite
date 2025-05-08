@@ -11,7 +11,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
 <script src="<?= asset('public/jalalidatepicker/persian-datepicker.min.js') ?>"></script>
 
 <footer class="footer-area">
-    <div class="container">
+    <div class="container"> 
         <div class="row" style="
     display: flex;
     justify-content: space-between;">
@@ -20,7 +20,7 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
                 <div class="footer-widget mb-70">
                     <!-- Logo -->
                     <a href="<?= url('/')?>" class="foo-logo d-block mb-4"><img
-                            src="<?= asset('public/setting/icon.jpeg') ?>" alt="logo"></a>
+                            src="<?= asset('public/setting/icon.png') ?>" alt="logo"></a>
                     <!-- Footer Newsletter Area -->
                     <div class="footer-nl-area">
                         <form action="#" method="post">
@@ -41,14 +41,6 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
                         <p>Jl. Bhakti Suci No.100, Cimpaeun, Kec. Tapos, Kota Depok<br>Jawa Barat 16459</p>
                         <p>Phone: (021) 879072338</p>
                         <p>Email: gamenewssite@gmail.com</p>
-                    </div>
-                    <!-- Footer Social Area -->
-                    <div class="footer-social-area">
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
