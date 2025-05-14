@@ -11,8 +11,15 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                 <div class="all-posts-area">
                     <!-- Section Heading -->
                     <div class="section-heading style-2">
-                        <h4>Your Articles</h4>
+                        <h4>Your Articles
+                            <i class="fas fa-info-circle text-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Postingan berita yang baru dibuat akan melalui proses verifikasi terlebih dahulu oleh admin.">
+                            </i>
+                        </h4>
                         <div class="line"></div>
+                        <?php
+                        $message = flash('after-post');
+                        ?>
                     </div>
 
                     <div class="row mt-2">
@@ -37,9 +44,7 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
 
                             <!-- Tabs Content -->
                             <div class="tab-content pt-3" id="postCommentTabContent">
-                                <?php
-                                $message = flash('after-post');
-                                ?>
+
                                 <!-- Posts Tab -->
                                 <div class="tab-pane fade show active" id="posts" role="tabpanel"
                                     aria-labelledby="posts-tab">
@@ -56,7 +61,7 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                                     <div class="post-content mt-0">
                                                         <div class="col-md-12 d-flex justify-content-between">
                                                             <div class="d-flex gap-3">
-                                                                <a href="<?= url('show-category/' . $post['cat_id']) ?>"
+                                                                <a href="#"
                                                                     class="post-cata cata-sm cata-danger me-3">
                                                                     <?= $post['category'] ?>
                                                                 </a>
@@ -100,22 +105,22 @@ require_once(BASE_PATH . "/template/author/layout/header.php");
                                                     <th>#</th>
                                                     <th>Post</th>
                                                     <th>User</th>
-                                                    <th>Comment</th>
+                                                    <th>Comment</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($comments as $key => $comment) { ?>
                                                     <tr>
                                                         <td><a class="text-primary"
-                                                                href="<?= url('author/comment') ?>"><?= $key + 1 ?></a></td>
+                                                                href="<?= url('show-post/' . $comment['id']) ?>"><?= $key + 1 ?></a></td>
                                                         <td><a class="text-dark"
-                                                                href="<?= url('author/comment') ?>"><?= $comment['title'] ?></a>
+                                                                href="<?= url('show-post/' . $comment['id']) ?>"><?= $comment['title'] ?></a>
                                                         </td>
                                                         <td><a class="text-dark"
-                                                                href="<?= url('author/comment') ?>"><?= $comment['username'] ?></a>
+                                                                href="<?= url('show-post/' . $comment['id']) ?>"><?= $comment['username'] ?></a>
                                                         </td>
                                                         <td><a class="text-dark"
-                                                                href="<?= url('author/comment') ?>"><?= $comment['comment'] ?></a>
+                                                                href="<?= url('show-post/' . $comment['id']) ?>"><?= $comment['comment'] ?></a>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>

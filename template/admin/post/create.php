@@ -12,7 +12,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
     <section class="col-12">
 
         <form method="post" action="<?= url('admin/post/store') ?>" enctype="multipart/form-data"
-            onsubmit="return syncQuill()">
+            onsubmit="return validateQuill()">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter title ..." required

@@ -1447,7 +1447,7 @@ input:focus {
     .post-details-content .post-content .post-title {
       display: block;
       margin-bottom: 15px;
-      font-weight: bolder;
+      font-weight: bolder !important;
       font-size: 35px; }
       @media only screen and (min-width: 768px) and (max-width: 991px) {
         .post-details-content .post-content .post-title {
@@ -2194,8 +2194,21 @@ font-size: 15px;}
     /* subtle red on hover */
 }
 
-.about-us-area {
-
+.about-us-area h1{
+  font-size: 40pt;
+}
+.about-us-area p{
+  text-align: left;
+  width: 100%;
+}
+.about-us-area .our-category {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: center;
 }
 .about-us-area .category-box {
   aspect-ratio: 1 / 1;

@@ -55,12 +55,14 @@ class Author
 
                 $comments = $db->select(
                         "SELECT 
-                                comments.*, 
+                                comments.id AS com_id,
+                                comments.comment,
+                                posts.id AS id,
                                 posts.title, 
                                 posts.summary, 
-                                posts.image,
-                                users.username, 
-                                categories.name AS category
+                                posts.image, 
+                                categories.name AS category,
+                                (SELECT username FROM users WHERE users.id = comments.user_id) AS username
                         FROM comments
                         JOIN posts ON comments.post_id = posts.id
                         JOIN users ON posts.user_id = users.id
@@ -134,8 +136,8 @@ class Author
                         if ($request['image']) {
                                 $request = array_merge($request, ['user_id' => $_SESSION['user']]);
                                 $posts = $db->insert('posts', array_keys($request), $request);
-                                flash('after-post', 'Postingan anda akan ditahan hingga di<i>approve</i> oleh admin.');
                                 $this->redirect('author');
+                                flash('after-post', 'Postingan anda akan ditahan hingga di<i>approve</i> oleh admin.');
                         } else {
                                 $this->redirect('author');
                         }
@@ -211,39 +213,6 @@ class Author
                 
                 require_once(BASE_PATH . '/template/author/search-result.php');
         }
-
-        public function breakingNews($id)
-        {
-                $db = new DataBase();
-                $post = $db->select("SELECT * FROM posts WHERE id = ?", [$id])->fetch();
-                if (empty($post)) {
-                        $this->redirectBack();
-                }
-
-                if ($post['breaking_news'] == 1) {
-                        $db->update('posts', $id, ['breaking_news'], [2]);
-                } else {
-                        $db->update('posts', $id, ['breaking_news'], [1]);
-                }
-                $this->redirectBack();
-        }
-
-        public function selected($id)
-        {
-                $db = new DataBase();
-                $post = $db->select("SELECT * FROM posts WHERE id = ?", [$id])->fetch();
-                if (empty($post)) {
-                        $this->redirectBack();
-                }
-
-                if ($post['selected'] == 1) {
-                        $db->update('posts', $id, ['selected'], [2]);
-                } else {
-                        $db->update('posts', $id, ['selected'], [1]);
-                }
-                $this->redirectBack();
-        }
-
 
         public function header()
         {

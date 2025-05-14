@@ -6,6 +6,20 @@ use Database\DataBase;
 
 class Home
 {
+        protected $currentDomain;
+        protected $basePath;
+            function __construct(){
+                    $this->currentDomain = CURRENT_DOMAIN;
+                    $this->basePath = BASE_PATH;
+            }
+    
+    
+            public function redirect($url){
+    
+                    header("Location: ". trim($this->currentDomain, '/ ') . '/' . trim($url, '/ '));
+                    exit;
+    
+            }
 
         public function index()
         {
@@ -20,14 +34,14 @@ class Home
                 // $breakingNewsZ = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3')->fetch();
                 $breakingNews = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3');
 
-                $lastPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts ORDER BY created_at DESC LIMIT 0, 9")->fetchAll();
+                $lastPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.post_status = 'approved' ORDER BY created_at DESC LIMIT 0, 9")->fetchAll();
 
                 $bodyBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
                 $sidebarBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
 
-                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 3")->fetchAll();
+                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.post_status = 'approved' ORDER BY view DESC LIMIT 0, 3")->fetchAll();
 
-                $mostCommentsPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4")->fetchAll();
+                $mostCommentsPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.post_status = 'approved' ORDER BY comments_count DESC LIMIT 0, 4")->fetchAll();
 
                 require_once(BASE_PATH . '/template/app/index.php');
         }
@@ -35,7 +49,7 @@ class Home
         public function header()
         {
                 $db = new DataBase();
-                $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 6')->fetchAll();
+                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts post_status = 'approved' ORDER BY view DESC LIMIT 0, 6")->fetchAll();
                 $categories = $db->select("SELECT * FROM categories")->fetchAll();
                 $setting = $db->select('SELECT * FROM websetting')->fetch();
 
@@ -64,8 +78,21 @@ class Home
         public function sideBar()
         {
                 $db = new DataBase();
-                $topSelectedPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE posts.selected = 2 ORDER BY created_at DESC LIMIT 0, 3")->fetchAll();
-                require_once(BASE_PATH . '/template/app/layout/sidebar.php');
+                $topSelectedPosts = $db->select("
+                SELECT posts.*, 
+                       COUNT(comments.id) AS comments_count, 
+                       users.username, 
+                       categories.name AS category 
+                FROM posts
+                LEFT JOIN comments ON comments.post_id = posts.id AND comments.status = 'approved'
+                LEFT JOIN users ON users.id = posts.user_id
+                LEFT JOIN categories ON categories.id = posts.cat_id
+                WHERE posts.selected = 2 AND posts.post_status = 'approved'  
+                GROUP BY posts.id
+                ORDER BY posts.created_at DESC
+                LIMIT 3
+            ")->fetchAll();
+            require_once(BASE_PATH . '/template/app/layout/sidebar.php');
         }
 
         public function show($id)
@@ -104,12 +131,12 @@ class Home
                                 (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, 
                                 (SELECT username FROM users WHERE users.id = posts.user_id) AS username, 
                                 (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category 
-                                FROM posts ORDER BY view DESC LIMIT 0, 3")->fetchAll();
+                                FROM posts WHERE post_status = 'approved' ORDER BY view DESC LIMIT 0, 3")->fetchAll();
                 $mostCommentsPosts = $db->select("SELECT posts.*, 
                                       (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, 
                                       (SELECT username FROM users WHERE users.id = posts.user_id) AS username, 
                                       (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category 
-                                      FROM posts ORDER BY comments_count DESC LIMIT 0, 4")->fetchAll();
+                                      FROM posts WHERE post_status = 'approved' ORDER BY comments_count DESC LIMIT 0, 4")->fetchAll();
 
                 $categoryPosts = $db->select(
                         "SELECT posts.*, 
@@ -118,7 +145,7 @@ class Home
                         (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category
                         FROM posts
                         WHERE cat_id = (
-                        SELECT cat_id FROM posts WHERE id = ?
+                        SELECT cat_id FROM posts WHERE id = ? AND post_status = 'approved'
                         )
                         AND id != ?
                         LIMIT 6;",
@@ -165,16 +192,16 @@ class Home
                 $db = new DataBase();
                 $category = $db->select("SELECT * FROM `categories` WHERE `id` = ? ORDER BY `id` DESC ;", [$id])->fetch();
 
-                $topSelectedPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category  FROM posts where posts.selected = 2 ORDER BY `created_at` DESC LIMIT 0,1 ;")->fetchAll();
+                $topSelectedPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category  FROM posts where posts.selected = 2 AND posts.post_status = 'approved' ORDER BY `created_at` DESC LIMIT 0,1 ;")->fetchAll();
 
 
-                $categoryPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id  AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE cat_id = ?  ORDER BY `created_at` DESC LIMIT 0,6 ;", [$id])->fetchAll();
+                $categoryPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id  AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE cat_id = ? AND post_status = 'approved' ORDER BY `created_at` DESC LIMIT 0,6 ;", [$id])->fetchAll();
 
-                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY `view` DESC LIMIT 0,3 ;")->fetchAll();
+                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE post_status = 'approved' ORDER BY `view` DESC LIMIT 0,3 ;")->fetchAll();
 
                 $breakingNews = $db->select("SELECT * FROM posts WHERE breaking_news = 2 ORDER BY `created_at` DESC LIMIT 0,1 ;")->fetch();
 
-                $mostCommentsPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username  , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY `comments_count` DESC LIMIT 0,4 ;")->fetchAll();
+                $mostCommentsPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id AND status = 'approved') AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username  , (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE post_status = 'approved' ORDER BY `comments_count` DESC LIMIT 0,4 ;")->fetchAll();
 
                 $menus = $db->select('SELECT *, (SELECT COUNT(*) FROM `menus` AS `submenus` WHERE `submenus`.`parent_id` = `menus`.`id`  ) as `submenu_count`  FROM `menus` WHERE `parent_id` IS NULL ;')->fetchAll();
 
@@ -237,16 +264,16 @@ class Home
 
 
                 // $breakingNewsZ = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3')->fetch();
-                $breakingNews = $db->select('SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3');
+                $breakingNews = $db->select("SELECT * FROM posts WHERE breaking_news = 2 ORDER BY created_at DESC LIMIT 0,3");
 
-                $lastPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts ORDER BY created_at DESC LIMIT 0, 9')->fetchAll();
+                $lastPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  WHERE post_status = 'approved' ORDER BY created_at DESC LIMIT 0, 9")->fetchAll();
 
-                $bodyBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
-                $sidebarBanner = $db->select('SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1')->fetch();
+                $bodyBanner = $db->select("SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1")->fetch();
+                $sidebarBanner = $db->select("SELECT * FROM banners ORDER BY created_at DESC LIMIT 0,1")->fetch();
 
-                $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 3')->fetchAll();
+                $popularPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  WHERE post_status = 'approved'   ORDER BY view DESC LIMIT 0, 3")->fetchAll();
 
-                $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
+                $mostCommentsPosts = $db->select("SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  WHERE post_status = 'approved'   ORDER BY comments_count DESC LIMIT 0, 4")->fetchAll();
 
 
                 require_once(BASE_PATH . "/template/author/index.php");
@@ -268,7 +295,7 @@ class Home
                         (SELECT username FROM users WHERE users.id = posts.user_id) AS username,
                         (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category 
                         FROM posts 
-                        WHERE title LIKE ? 
+                        WHERE title LIKE ? AND post_status = \'approved\'
                 ', ["%$keyword%"])->fetchAll();
 
                 $setting = $db->select('SELECT * FROM websetting')->fetch();
@@ -281,7 +308,11 @@ class Home
         {
                 $db = new DataBase();
                 $db->delete('users', $id);
-                $this->redirectBack();
+                if (isset($_SESSION['user'])) {
+                        unset($_SESSION['user']);
+                        session_destroy();
+                    }
+                $this->redirect('home');
         }
 
 

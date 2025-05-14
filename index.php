@@ -245,6 +245,10 @@ uri('admin/user/update/{id}', 'Admin\User', 'update', 'POST');
 uri('admin/user/delete/{id}', 'Admin\User', 'delete');
 uri('admin/user/permission/{id}', 'Admin\User', 'permission');
 
+// uri('user-delete/{id}', 'Admin\User', 'deleteUser');
+uri('user-delete/{id}', 'App\Home', 'delete');
+
+
 //comments
 uri('admin/comment', 'Admin\Comment', 'index');
 uri('admin/comment/change-status/{id}', 'Admin\Comment', 'changeStatus');
@@ -282,7 +286,9 @@ uri('user/update/{id}', 'Auth\Auth', 'update', 'POST');
 
   
 //home
-if (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'user') {
+if (!isset($_SESSION['user'])) {
+    uri('/', 'App\Home', 'index');
+}elseif (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'user') {
     uri('/', 'App\Home', 'index');
 }elseif (!isset($_SESSION['permission']) || $_SESSION['permission'] == 'admin'){
     uri('/', 'Admin\Dashboard', 'index');
@@ -300,7 +306,6 @@ uri('most-view', 'App\Home', 'mostViewed');
 uri('about-us', 'App\Home', 'aboutUs');
 uri('contact', 'App\Home', 'contact');
 uri('contact-store', 'App\Home', 'contactStore', 'POST');
-uri('user-delete/{id}', 'App\Home', 'delete');
 uri('search', 'App\Home', 'search', 'GET');
 uri('author-search', 'App\Author', 'search', 'GET');
 

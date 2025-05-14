@@ -36,21 +36,30 @@ class User extends Admin{
                 $this->redirect('admin/user');
         }
 
-
-
-        public function permission($id)
+        public function deleteUser($id)
         {
                 $db = new DataBase();
-                $user = $db->select('SELECT * FROM users WHERE id = ?;', [$id])->fetch();
-                if(empty($user)){
-                        $this->redirectBack();  
-                }
-                if($user['permission'] == 'user'){
-                        $db->update('users', $id, ['permission'], ['admin']);
-                }
-                else{
-                        $db->update('users', $id, ['permission'], ['user']);
-                }
-                $this->redirectBack();
+                $db->delete('users', $id);
+                if (isset($_SESSION['user'])) {
+                        unset($_SESSION['user']);
+                        session_destroy();
+                    }
+                $this->redirect('home');
         }
+        
+        // public function permission($id)
+        // {
+        //         $db = new DataBase();
+        //         $user = $db->select('SELECT * FROM users WHERE id = ?;', [$id])->fetch();
+        //         if(empty($user)){
+        //                 $this->redirectBack();  
+        //         }
+        //         if($user['permission'] == 'user'){
+        //                 $db->update('users', $id, ['permission'], ['admin']);
+        //         }
+        //         else{
+        //                 $db->update('users', $id, ['permission'], ['user']);
+        //         }
+        //         $this->redirectBack();
+        // }
 }

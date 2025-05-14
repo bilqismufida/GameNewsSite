@@ -20,7 +20,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php');
                 <th>Name</th>
                 <th>Email</th>
                 <th>Message</th>
-                <th>setting</th>
             </tr>
         </thead>
         <tbody>
@@ -36,11 +35,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php');
                     </td>
                     <td>
                         <?= $contact['message'] ?>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary text-white">
-                            See Detail
-                        </a>
                     </td>
                 </tr>
 

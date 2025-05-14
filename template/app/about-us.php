@@ -70,9 +70,9 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                 <div class=" about-us-section container ">
                     <div class="row g-4">
                         <div class="col-md-4">
-                            <div class="p-4 border rounded square-box d-flex flex-column justify-content-between">
+                            <div class="our-category p-4 border rounded square-box d-flex flex-column justify-content-between">
                                 <h1 class="fw-bold">Kategori Kami</h1>
-                                <p>This is the only text & heading box.</p>
+                                <p>Menyajikan berita terbaru tentang dunia game, turnamen e-sport, dan perkembangan industri gaming.</p>
                             </div>
                         </div>
                         <?php foreach ($categories as $category): ?>

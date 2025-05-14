@@ -73,7 +73,7 @@ if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
                                 <u>Edit Profile</u>
                             </button>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus akun?');"
-                                href="<? url('user-delete/' . $_SESSION['user']) ?>"
+                                href="<?= url('user-delete/' . $_SESSION['user']) ?>"
                                 class="btn btn-outline-danger">delete
                                 account</a>
                         </div>

@@ -19,7 +19,7 @@ require_once(BASE_PATH . '/template/author/layout/header.php')
                     <div class="row mt-2">
                         <div class="col-12">
                             <form method="post" action="<?= url('author/post/store') ?>" enctype="multipart/form-data"
-                                onsubmit="return syncQuill()">
+                                onsubmit="return validateQuill()" id="quill-form">
                                 <div class="form-group">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title"
@@ -69,8 +69,6 @@ require_once(BASE_PATH . '/template/author/layout/header.php')
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

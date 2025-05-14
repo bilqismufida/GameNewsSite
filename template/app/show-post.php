@@ -54,7 +54,7 @@ if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
                         <!-- Post Content -->
                         <div class="post-content mt-0">
                             <a href="#" class="post-title mb-2">
-                                <h1 class="fw-bold">
+                                <h1>
                                     <?= $post['title'] ?>
                                 </h1>
                             </a>
@@ -84,13 +84,11 @@ if (!isset($_SESSION['permission']) || $_SESSION['permission'] != 'author') {
 
                         <!-- Post Author -->
                         <div class="vizew-post-author d-inline align-items-center py-5 mt-50">
-                            <!-- <div class="post-author-thumb">
-                                <img class="single-post-area" src="img/bg-img/30.jpg" alt="">
-                            </div> -->
                             <div class="post-author-desc d-flex gap-3">
                                 <p>Written By: </p>
                                 <a href="#" class="author-name"><?= $post['username'] ?></a>
                             </div>
+                            <h4 class="fw-bold mt-5">Category</h4>
                             <div class="mt-3">
                                 <a class="post-cata cata-sm text-white cata-danger"
                                     href="<?= url('show-category/' . $post['cat_id']) ?>"><?= $post['category'] ?></a>

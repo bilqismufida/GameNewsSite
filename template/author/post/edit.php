@@ -19,7 +19,7 @@ require_once(BASE_PATH . '/template/author/layout/header.php')
                     <div class="row mt-2">
                         <div class="col-12">
                             <form method="post" action="<?= url('author/post/update/' . $post['id']) ?>"
-                                enctype="multipart/form-data" onsubmit="return syncQuill()">
+                                enctype="multipart/form-data" onsubmit="return validateQuill()">
                                 <div class="form-group">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title"
@@ -35,8 +35,6 @@ require_once(BASE_PATH . '/template/author/layout/header.php')
                                                 <?= $category['name'] ?>
                                             </option>
                                         <?php } ?>
-
-
                                     </select>
                                 </div>
 
@@ -57,8 +55,6 @@ require_once(BASE_PATH . '/template/author/layout/header.php')
 
                                 <div class="form-group">
                                     <label for="body">body</label>
-                                    <!-- <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="5" required
-                    autofocus></textarea> -->
                                     <!-- The Quill editor -->
                                     <div id="toolbar"></div>
                                     <div id="editor" style="height: 200px;"><?= $post['body'] ?></div>

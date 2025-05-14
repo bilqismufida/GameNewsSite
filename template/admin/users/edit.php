@@ -22,6 +22,8 @@ require_once BASE_PATH . '/template/admin/layouts/head-tag.php';
                 <select name="permission" id="permission" class="form-control" required autofocus>
                     <option value="user" <?php if ($user['permission'] == 'user')
                         echo 'selected' ?>>User</option>
+                    <option value="author" <?php if ($user['permission'] == 'author')
+                        echo 'selected' ?>>Author</option>
                     <option value="admin" <?php if ($user['permission'] == 'admin')
                         echo 'selected' ?>>Admin</option>
                 </select>

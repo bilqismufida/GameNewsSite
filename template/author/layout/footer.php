@@ -48,6 +48,13 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
     </div> 
 </footer>
 
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+</script>
+
 <!-- Quill for text area form -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <!-- Initialize Quill editor -->
@@ -56,18 +63,46 @@ require_once(BASE_PATH . '/template/app/layout/script.php');
         theme: 'snow',
         placeholder: 'Write your article...',
         modules: {
-            toolbar: true // 👈 THIS loads Quill’s default full toolbar
+            toolbar: true
         }
     });
 
 </script>
 
 <script>
-    function syncQuill() {
-        document.querySelector('#body').value = quill.root.innerHTML;
-        return true;
+    const form = document.querySelector('quill-form'); // or use a specific ID
+    form.addEventListener('submit', function (e) {
+        const quillContent = quill.getText().trim();
+        const quillHtml = quill.root.innerHTML.trim();
+
+        if (quillContent.length === 0) {
+            e.preventDefault(); // stop form
+            alert("Please fill in the body content.");
+            return;
+        }
+
+        document.querySelector('#body').value = quillHtml;
+    });
+</script>
+
+
+<script>
+    function validateQuill() {
+        const quillContent = quill.getText().trim();
+        const quillHtml = quill.root.innerHTML.trim();
+
+        if (quillContent.length === 0) {
+            alert("Please fill in the body content.");
+            return false; // prevent submission
+        }
+
+        // sync HTML to hidden textarea
+        document.querySelector('#body').value = quillHtml;
+        return true; // allow submission
     }
 </script>
+
+
 
 <!-- ##### Footer Area End ##### -->
 
