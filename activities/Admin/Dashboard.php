@@ -10,6 +10,11 @@ class Dashboard extends Admin
 
     public function index()
     {
+        if (!isset($_SESSION['user'])) {
+            echo "Please login first.";
+            $this->redirect('home');
+    }
+    
         $db = new DataBase();
         $postCount = $db->select('SELECT COUNT(*) FROM `posts`  ;')->fetch();
         $postsViews = $db->select('SELECT SUM(view) FROM `posts`  ;')->fetch();

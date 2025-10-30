@@ -1,5 +1,4 @@
 <?php
-
 require_once(BASE_PATH . '/template/author/layout/header.php')
 
     ?>

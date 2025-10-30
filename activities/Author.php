@@ -31,7 +31,7 @@ class Author
 
                 if (!isset($_SESSION['user'])) {
                         echo "Please login first.";
-                        exit;
+                        $this->redirect('home');
                 }
 
                 $db = new DataBase();

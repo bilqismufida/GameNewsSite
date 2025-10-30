@@ -24,7 +24,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?=url('/')?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page"><?= $category['name'] ?> News</li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $categoryPage['name'] ?> News</li>
                     </ol>
                 </nav>
             </div>
@@ -42,7 +42,7 @@ require_once(BASE_PATH . '/template/app/layout/header.php');
                 <div class="archive-catagory-view ">
                     <!-- Catagory -->
                     <div class="section-heading style-2">
-                        <h4><?= $category['name'] ?> News</h4>
+                        <h4><?= $categoryPage['name'] ?> News</h4>
                         <div class="line"></div>
                     </div>
                 </div>
